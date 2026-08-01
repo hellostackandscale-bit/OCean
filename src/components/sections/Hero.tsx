@@ -11,8 +11,23 @@ import { ArrowRight, Phone, Shield, Award, Clock } from "lucide-react";
 export default function Hero() {
   return (
     <section className="section relative overflow-hidden" style={{ background: "var(--color-bg-primary)" }}>
-      <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Mobile-Only Full Background Image + Rich Overlay */}
+      <div
+        className="absolute inset-0 lg:hidden bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/images/projects/mgps-installation.png')",
+        }}
+      />
+      <div
+        className="absolute inset-0 lg:hidden"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(13, 37, 74, 0.88) 0%, rgba(10, 25, 47, 0.94) 100%)",
+        }}
+      />
+
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -24,35 +39,34 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full mb-5 sm:mb-6 max-w-full"
               style={{
-                background: "var(--color-primary-light)",
-                border: "1px solid rgba(21, 101, 192, 0.15)",
+                background: "rgba(227, 242, 253, 0.15)",
+                border: "1px solid rgba(255, 255, 255, 0.25)",
+                backdropFilter: "blur(4px)",
               }}
             >
-              <Shield size={14} style={{ color: "var(--color-primary)" }} />
-              <span className="text-xs font-semibold" style={{ color: "var(--color-primary)" }}>
+              <Shield size={14} className="text-blue-300 lg:text-[var(--color-primary)] flex-shrink-0" />
+              <span className="text-[11px] sm:text-xs font-semibold text-white lg:text-[var(--color-primary)] truncate">
                 Trusted MGPS Installer • Made in India 🇮🇳
               </span>
             </motion.div>
 
             {/* Main Heading */}
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5 text-white lg:text-[var(--color-primary-dark)]"
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 700,
-                color: "var(--color-primary-dark)",
               }}
             >
               Your Trusted Partner for{" "}
-              <span className="text-gradient">Medical Gas Pipeline Systems</span>
+              <span className="text-blue-400 lg:text-gradient">Medical Gas Pipeline Systems</span>
             </h1>
 
             {/* Subtext */}
             <p
-              className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-[520px]"
-              style={{ color: "var(--color-text-secondary)" }}
+              className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-[520px] text-blue-100/90 lg:text-[var(--color-text-secondary)]"
             >
               Highly specialized stockist, supplier & installer of complete hospital
               gas supply systems, modular operation theaters, and medical equipment
@@ -65,14 +79,14 @@ export default function Hero() {
                 Explore Services
                 <ArrowRight size={18} />
               </Link>
-              <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto">
+              <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto border-white/40 text-white hover:bg-white hover:text-blue-900 lg:border-[var(--color-primary)] lg:text-[var(--color-primary)] lg:hover:bg-[var(--color-primary)] lg:hover:text-white">
                 <Phone size={18} />
                 Contact Us
               </Link>
             </div>
 
             {/* Mini Trust Indicators */}
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-wrap gap-5 sm:gap-6">
               {[
                 { icon: Award, text: "ISO Certified" },
                 { icon: Shield, text: "Quality Assured" },
@@ -85,8 +99,8 @@ export default function Hero() {
                   transition={{ delay: 0.4 + i * 0.1 }}
                   className="flex items-center gap-2"
                 >
-                  <item.icon size={16} style={{ color: "var(--color-primary)" }} />
-                  <span className="text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>
+                  <item.icon size={16} className="text-blue-300 lg:text-[var(--color-primary)]" />
+                  <span className="text-xs sm:text-sm font-medium text-white/90 lg:text-[var(--color-text-secondary)]">
                     {item.text}
                   </span>
                 </motion.div>
@@ -94,15 +108,15 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right: Visual */}
+          {/* Right: Visual (Desktop Only) */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="relative hidden lg:block"
           >
             <div
-              className="relative rounded-2xl overflow-hidden"
+              className="relative rounded-2xl overflow-hidden shadow-2xl"
               style={{
                 background: "linear-gradient(135deg, var(--color-primary-light), rgba(2, 136, 209, 0.1))",
                 aspectRatio: "4/3",
@@ -110,7 +124,7 @@ export default function Hero() {
             >
               {/* Decorative grid pattern */}
               <div
-                className="absolute inset-0 opacity-30"
+                className="absolute inset-0 opacity-30 z-10 pointer-events-none"
                 style={{
                   backgroundImage: `
                     linear-gradient(rgba(21, 101, 192, 0.1) 1px, transparent 1px),
@@ -137,7 +151,7 @@ export default function Hero() {
 
               {/* Floating badges */}
               <motion.div
-                className="absolute top-6 right-6 bg-white rounded-lg px-3 py-2"
+                className="absolute top-6 right-6 bg-white rounded-lg px-3 py-2 z-20"
                 style={{ boxShadow: "var(--shadow-md)" }}
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -151,7 +165,7 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-6 left-6 bg-white rounded-lg px-3 py-2"
+                className="absolute bottom-6 left-6 bg-white rounded-lg px-3 py-2 z-20"
                 style={{ boxShadow: "var(--shadow-md)" }}
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
