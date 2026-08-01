@@ -1,0 +1,172 @@
+// ============================================
+// Hero Section — Landing Page
+// ============================================
+
+"use client";
+
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowRight, Phone, Shield, Award, Clock } from "lucide-react";
+
+export default function Hero() {
+  return (
+    <section className="section relative overflow-hidden" style={{ background: "var(--color-bg-primary)" }}>
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          >
+            {/* Trust Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{
+                background: "var(--color-primary-light)",
+                border: "1px solid rgba(21, 101, 192, 0.15)",
+              }}
+            >
+              <Shield size={14} style={{ color: "var(--color-primary)" }} />
+              <span className="text-xs font-semibold" style={{ color: "var(--color-primary)" }}>
+                Trusted MGPS Installer • Made in India 🇮🇳
+              </span>
+            </motion.div>
+
+            {/* Main Heading */}
+            <h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                color: "var(--color-primary-dark)",
+              }}
+            >
+              Your Trusted Partner for{" "}
+              <span className="text-gradient">Medical Gas Pipeline Systems</span>
+            </h1>
+
+            {/* Subtext */}
+            <p
+              className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-[520px]"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
+              Highly specialized stockist, supplier & installer of complete hospital
+              gas supply systems, modular operation theaters, and medical equipment
+              across India.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-8 sm:mb-10">
+              <Link href="/services" className="btn btn-primary btn-lg w-full sm:w-auto">
+                Explore Services
+                <ArrowRight size={18} />
+              </Link>
+              <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto">
+                <Phone size={18} />
+                Contact Us
+              </Link>
+            </div>
+
+            {/* Mini Trust Indicators */}
+            <div className="flex flex-wrap gap-6">
+              {[
+                { icon: Award, text: "ISO Certified" },
+                { icon: Shield, text: "Quality Assured" },
+                { icon: Clock, text: "24/7 Support" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
+                  className="flex items-center gap-2"
+                >
+                  <item.icon size={16} style={{ color: "var(--color-primary)" }} />
+                  <span className="text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>
+                    {item.text}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
+          >
+            <div
+              className="relative rounded-2xl overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, var(--color-primary-light), rgba(2, 136, 209, 0.1))",
+                aspectRatio: "4/3",
+              }}
+            >
+              {/* Decorative grid pattern */}
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(21, 101, 192, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(21, 101, 192, 0.1) 1px, transparent 1px)
+                  `,
+                  backgroundSize: "40px 40px",
+                }}
+              />
+
+              {/* Real Hero Image */}
+              <img
+                src="/images/projects/mgps-installation.png"
+                alt="Medical Gas Pipeline System Installation"
+                className="w-full h-full object-cover"
+              />
+              {/* Subtle dark-to-light gradient overlay for badge readability */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(13, 71, 161, 0.4) 0%, transparent 60%)",
+                }}
+              />
+
+              {/* Floating badges */}
+              <motion.div
+                className="absolute top-6 right-6 bg-white rounded-lg px-3 py-2"
+                style={{ boxShadow: "var(--shadow-md)" }}
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full" style={{ background: "var(--color-success)" }} />
+                  <span className="text-xs font-semibold" style={{ color: "var(--color-text-primary)" }}>
+                    150+ Projects
+                  </span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-6 left-6 bg-white rounded-lg px-3 py-2"
+                style={{ boxShadow: "var(--shadow-md)" }}
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full" style={{ background: "var(--color-primary)" }} />
+                  <span className="text-xs font-semibold" style={{ color: "var(--color-text-primary)" }}>
+                    Pan-India Service
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
