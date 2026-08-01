@@ -10,21 +10,19 @@ import { ArrowRight, Phone, Shield, Award, Clock } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="section relative overflow-hidden" style={{ background: "var(--color-bg-primary)" }}>
-      {/* Mobile Background Image */}
+    <section className="section relative overflow-hidden bg-white">
+      {/* Mobile-Only Background Image & Dark Overlay */}
       <div
         className="absolute inset-0 lg:hidden bg-cover bg-center"
         style={{
           backgroundImage: "url('/images/projects/mgps-installation.png')",
         }}
       />
-      {/* Mobile Soft Glass Overlay for 100% Legibility & Visible Background */}
       <div
         className="absolute inset-0 lg:hidden"
         style={{
           background:
-            "linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(250, 251, 252, 0.94) 100%)",
-          backdropFilter: "blur(2px)",
+            "linear-gradient(180deg, rgba(10, 25, 47, 0.85) 0%, rgba(13, 37, 74, 0.92) 100%)",
         }}
       />
 
@@ -41,35 +39,32 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full mb-5 sm:mb-6 max-w-full"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full mb-5 sm:mb-6 max-w-full bg-[var(--color-primary-light)] lg:bg-[var(--color-primary-light)] bg-white/15 backdrop-blur-md"
               style={{
-                background: "var(--color-primary-light)",
                 border: "1px solid rgba(21, 101, 192, 0.2)",
               }}
             >
-              <Shield size={14} style={{ color: "var(--color-primary)" }} className="flex-shrink-0" />
-              <span className="text-[11px] sm:text-xs font-semibold" style={{ color: "var(--color-primary)" }}>
+              <Shield size={14} className="text-white lg:text-[var(--color-primary)] flex-shrink-0" />
+              <span className="text-[11px] sm:text-xs font-semibold text-white lg:text-[var(--color-primary)] truncate">
                 Trusted MGPS Installer • Made in India 🇮🇳
               </span>
             </motion.div>
 
             {/* Main Heading */}
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5 text-white lg:text-[var(--color-primary-dark)]"
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 700,
-                color: "var(--color-primary-dark)",
               }}
             >
               Your Trusted Partner for{" "}
-              <span className="text-gradient">Medical Gas Pipeline Systems</span>
+              <span className="text-blue-300 lg:text-gradient">Medical Gas Pipeline Systems</span>
             </h1>
 
             {/* Subtext */}
             <p
-              className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-[520px]"
-              style={{ color: "var(--color-text-secondary)" }}
+              className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-[520px] text-blue-100/90 lg:text-[var(--color-text-secondary)]"
             >
               Highly specialized stockist, supplier & installer of complete hospital
               gas supply systems, modular operation theaters, and medical equipment
@@ -84,11 +79,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/contact"
-                className="btn btn-outline btn-lg w-full sm:w-auto bg-white"
-                style={{
-                  color: "var(--color-primary)",
-                  borderColor: "var(--color-primary)",
-                }}
+                className="btn btn-outline btn-lg w-full sm:w-auto text-white border-white/60 hover:bg-white hover:text-blue-900 lg:text-[var(--color-primary)] lg:border-[var(--color-primary)] lg:hover:bg-[var(--color-primary)] lg:hover:text-white"
               >
                 <Phone size={18} />
                 Contact Us
@@ -109,8 +100,8 @@ export default function Hero() {
                   transition={{ delay: 0.4 + i * 0.1 }}
                   className="flex items-center gap-2"
                 >
-                  <item.icon size={16} style={{ color: "var(--color-primary)" }} />
-                  <span className="text-xs sm:text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>
+                  <item.icon size={16} className="text-blue-300 lg:text-[var(--color-primary)]" />
+                  <span className="text-xs sm:text-sm font-medium text-white/90 lg:text-[var(--color-text-secondary)]">
                     {item.text}
                   </span>
                 </motion.div>
