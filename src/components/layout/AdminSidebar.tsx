@@ -24,6 +24,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
+import Logo from "@/components/ui/Logo";
+
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/admin/dashboard" },
   { icon: Package, label: "Products", href: "/admin/products" },
@@ -48,18 +50,8 @@ export default function AdminSidebar() {
   const sidebarContent = (
     <>
       {/* Logo */}
-      <div className="px-5 py-6 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-white/20">
-          <span className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-display)" }}>
-            O
-          </span>
-        </div>
-        <div>
-          <span className="text-white font-bold text-sm block leading-tight" style={{ fontFamily: "var(--font-display)" }}>
-            OCEAN MGPS
-          </span>
-          <span className="text-white/50 text-[10px] block">Admin Panel</span>
-        </div>
+      <div className="px-5 py-5 border-b border-white/10">
+        <Logo variant="light" size="md" />
       </div>
 
       {/* Menu */}

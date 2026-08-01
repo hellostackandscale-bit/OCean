@@ -11,6 +11,8 @@ import { Mail, Lock, LogIn } from "lucide-react";
 import { signIn } from "@/lib/auth";
 import toast from "react-hot-toast";
 
+import Logo from "@/components/ui/Logo";
+
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,26 +45,10 @@ export default function AdminLoginPage() {
         className="w-full max-w-md"
       >
         {/* Logo */}
-        <div className="text-center mb-8">
-          <div
-            className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4"
-            style={{
-              background: "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
-              boxShadow: "var(--shadow-blue)",
-            }}
-          >
-            <span className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-display)" }}>
-              O
-            </span>
-          </div>
-          <h1
-            className="text-2xl font-bold"
-            style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
-          >
-            Ocean MGPS
-          </h1>
-          <p className="text-sm mt-1" style={{ color: "var(--color-text-secondary)" }}>
-            Admin Panel
+        <div className="text-center mb-8 flex flex-col items-center">
+          <Logo size="lg" />
+          <p className="text-xs font-semibold tracking-wider uppercase mt-3" style={{ color: "var(--color-text-secondary)" }}>
+            Admin Management Portal
           </p>
         </div>
 

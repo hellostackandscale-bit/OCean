@@ -6,6 +6,8 @@ import Link from "next/link";
 import { MapPin, Phone, Mail, Globe, ArrowUpRight } from "lucide-react";
 import { DEFAULT_SETTINGS } from "@/lib/constants";
 
+import Logo from "@/components/ui/Logo";
+
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
@@ -36,29 +38,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {/* Column 1: Logo & About */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 no-underline mb-4">
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{
-                  background: "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
-                }}
-              >
-                <span className="text-white font-bold text-lg" style={{ fontFamily: "var(--font-display)" }}>
-                  O
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <span
-                  className="text-lg font-bold leading-tight"
-                  style={{ color: "var(--color-primary-dark)", fontFamily: "var(--font-display)" }}
-                >
-                  OCEAN MGPS
-                </span>
-                <span className="text-[10px] font-medium tracking-wider" style={{ color: "var(--color-text-secondary)" }}>
-                  SALES & MULTI SERVICES
-                </span>
-              </div>
-            </Link>
+            <div className="mb-4">
+              <Logo size="md" />
+            </div>
             <p className="text-sm leading-relaxed mt-3" style={{ color: "var(--color-text-secondary)" }}>
               Highly specialized stockist, supplier & installer of Medical Gas Pipeline Systems and hospital equipment.
             </p>

@@ -11,21 +11,6 @@ import { ArrowRight, Phone, Shield, Award, Clock } from "lucide-react";
 export default function Hero() {
   return (
     <section className="section relative overflow-hidden" style={{ background: "var(--color-bg-primary)" }}>
-      {/* Mobile-Only Full Background Image + Rich Overlay */}
-      <div
-        className="absolute inset-0 lg:hidden bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/projects/mgps-installation.png')",
-        }}
-      />
-      <div
-        className="absolute inset-0 lg:hidden"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(13, 37, 74, 0.88) 0%, rgba(10, 25, 47, 0.94) 100%)",
-        }}
-      />
-
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Text Content */}
@@ -41,32 +26,33 @@ export default function Hero() {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full mb-5 sm:mb-6 max-w-full"
               style={{
-                background: "rgba(227, 242, 253, 0.15)",
-                border: "1px solid rgba(255, 255, 255, 0.25)",
-                backdropFilter: "blur(4px)",
+                background: "var(--color-primary-light)",
+                border: "1px solid rgba(21, 101, 192, 0.15)",
               }}
             >
-              <Shield size={14} className="text-blue-300 lg:text-[var(--color-primary)] flex-shrink-0" />
-              <span className="text-[11px] sm:text-xs font-semibold text-white lg:text-[var(--color-primary)] truncate">
+              <Shield size={14} style={{ color: "var(--color-primary)" }} className="flex-shrink-0" />
+              <span className="text-[11px] sm:text-xs font-semibold" style={{ color: "var(--color-primary)" }}>
                 Trusted MGPS Installer • Made in India 🇮🇳
               </span>
             </motion.div>
 
             {/* Main Heading */}
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5 text-white lg:text-[var(--color-primary-dark)]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] sm:leading-[1.1] mb-4 sm:mb-5"
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 700,
+                color: "var(--color-primary-dark)",
               }}
             >
               Your Trusted Partner for{" "}
-              <span className="text-blue-400 lg:text-gradient">Medical Gas Pipeline Systems</span>
+              <span className="text-gradient">Medical Gas Pipeline Systems</span>
             </h1>
 
             {/* Subtext */}
             <p
-              className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-[520px] text-blue-100/90 lg:text-[var(--color-text-secondary)]"
+              className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-[520px]"
+              style={{ color: "var(--color-text-secondary)" }}
             >
               Highly specialized stockist, supplier & installer of complete hospital
               gas supply systems, modular operation theaters, and medical equipment
@@ -79,7 +65,7 @@ export default function Hero() {
                 Explore Services
                 <ArrowRight size={18} />
               </Link>
-              <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto border-white/40 text-white hover:bg-white hover:text-blue-900 lg:border-[var(--color-primary)] lg:text-[var(--color-primary)] lg:hover:bg-[var(--color-primary)] lg:hover:text-white">
+              <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto">
                 <Phone size={18} />
                 Contact Us
               </Link>
@@ -99,8 +85,8 @@ export default function Hero() {
                   transition={{ delay: 0.4 + i * 0.1 }}
                   className="flex items-center gap-2"
                 >
-                  <item.icon size={16} className="text-blue-300 lg:text-[var(--color-primary)]" />
-                  <span className="text-xs sm:text-sm font-medium text-white/90 lg:text-[var(--color-text-secondary)]">
+                  <item.icon size={16} style={{ color: "var(--color-primary)" }} />
+                  <span className="text-xs sm:text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>
                     {item.text}
                   </span>
                 </motion.div>
@@ -108,12 +94,12 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right: Visual (Desktop Only) */}
+          {/* Right: Visual */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative hidden lg:block"
+            className="relative block w-full mt-4 lg:mt-0"
           >
             <div
               className="relative rounded-2xl overflow-hidden shadow-2xl"

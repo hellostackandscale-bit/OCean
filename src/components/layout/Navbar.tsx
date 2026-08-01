@@ -11,6 +11,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 
+import Logo from "@/components/ui/Logo";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -39,32 +41,7 @@ export default function Navbar() {
       <div className="container">
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 no-underline">
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center"
-              style={{
-                background: "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
-              }}
-            >
-              <span className="text-white font-bold text-lg" style={{ fontFamily: "var(--font-display)" }}>
-                O
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span
-                className="text-lg font-bold leading-tight"
-                style={{ color: "var(--color-primary-dark)", fontFamily: "var(--font-display)" }}
-              >
-                OCEAN
-              </span>
-              <span
-                className="text-[10px] font-medium tracking-wider leading-tight"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                MGPS INSTALLER
-              </span>
-            </div>
-          </Link>
+          <Logo size="md" />
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
