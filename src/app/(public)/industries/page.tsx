@@ -83,15 +83,17 @@ export default function IndustriesPage() {
       <section className="section pb-6 sm:pb-8" style={{ background: "var(--color-bg-primary)" }}>
         <div className="container text-center max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
-            <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 text-xs font-semibold shadow-xs"
-              style={{
-                background: "var(--color-primary-light)",
-                color: "var(--color-primary)",
-              }}
-            >
-              <MapPin size={14} /> Ch. Sambhaji Nagar, Maharashtra • Serving Pan-India
-            </span>
+            <div className="mb-5">
+              <span
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
+                style={{
+                  background: "var(--color-primary-light)",
+                  color: "var(--color-primary)",
+                }}
+              >
+                <MapPin size={14} /> Ch. Sambhaji Nagar, Maharashtra • Serving Pan-India
+              </span>
+            </div>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
               style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
@@ -126,10 +128,10 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* Industries Grid */}
+      {/* Industries Grid — Open Flat Layout */}
       <section className="section pt-10 pb-24 sm:pb-20" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12">
             {industries.map((item, i) => (
               <motion.div
                 key={item.id}
@@ -137,62 +139,46 @@ export default function IndustriesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
-                className="bg-white rounded-2xl p-5 sm:p-7 border border-[var(--color-border)] shadow-[var(--shadow-sm)] hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                className="group flex flex-col justify-between"
               >
                 <div>
                   {/* Top Row: Icon + Badge */}
                   <div className="flex items-center justify-between gap-3 mb-4">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{
-                        background: "var(--color-primary-light)",
-                        boxShadow: "0 4px 12px rgba(21, 101, 192, 0.12)",
-                      }}
-                    >
-                      <item.icon size={24} style={{ color: "var(--color-primary)" }} />
+                    <div className="w-11 h-11 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
+                      <item.icon size={20} />
                     </div>
-                    <span
-                      className="text-[11px] font-bold px-3 py-1 rounded-full flex-shrink-0"
-                      style={{
-                        background: "var(--color-primary-light)",
-                        color: "var(--color-primary)",
-                        border: "1px solid rgba(21, 101, 192, 0.15)",
-                      }}
-                    >
+                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50/80 text-[var(--color-primary)] flex-shrink-0">
                       {item.badge}
                     </span>
                   </div>
 
                   {/* Title & Description */}
                   <h3
-                    className="text-lg font-bold mb-2 group-hover:text-[var(--color-primary)] transition-colors leading-snug"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
+                    className="text-lg font-bold mb-2 group-hover:text-[var(--color-primary)] transition-colors leading-snug text-slate-900"
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {item.name}
                   </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-600 mb-5">
+                  <p className="text-sm leading-relaxed text-slate-500 mb-4">
                     {item.description}
                   </p>
 
                   {/* Feature Checklist List */}
                   <div className="space-y-2 mb-6">
                     {item.tags.map((tag, j) => (
-                      <div
-                        key={j}
-                        className="flex items-center gap-2 text-xs font-medium text-slate-700 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200/60"
-                      >
-                        <CheckCircle2 size={14} className="text-[var(--color-primary)] flex-shrink-0" />
+                      <div key={j} className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                        <CheckCircle2 size={15} className="text-[var(--color-primary)] flex-shrink-0" />
                         <span>{tag}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Card Action Button */}
-                <div className="pt-4 border-t border-[var(--color-border-light)] mt-auto">
+                {/* Card Action Link */}
+                <div className="mt-auto">
                   <Link
                     href={`/contact?industry=${encodeURIComponent(item.name)}`}
-                    className="w-full py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-between transition-colors bg-[var(--color-primary-light)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[var(--color-primary)] group-hover:gap-3 transition-all duration-300"
                   >
                     <span>Inquire for {item.name.split(" ")[0]}</span>
                     <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

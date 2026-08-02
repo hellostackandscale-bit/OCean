@@ -41,27 +41,30 @@ export default function ProjectsPage() {
             </p>
           </motion.div>
 
-          {/* Filter */}
-          <div className="flex overflow-x-auto pb-2 sm:pb-0 gap-2 mb-8 sm:mb-10 justify-start sm:justify-center items-center">
-            <Filter size={18} className="flex-shrink-0" style={{ color: "var(--color-text-muted)" }} />
-            {PROJECT_CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer whitespace-nowrap flex-shrink-0"
-                style={{
-                  background: activeCategory === cat ? "var(--color-primary)" : "var(--color-bg-secondary)",
-                  color: activeCategory === cat ? "#FFFFFF" : "var(--color-text-secondary)",
-                  border: `1px solid ${activeCategory === cat ? "var(--color-primary)" : "var(--color-border)"}`,
-                }}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Filter Bar */}
+          <div className="flex overflow-x-auto pb-4 gap-2 mb-10 sm:mb-12 justify-start sm:justify-center items-center scrollbar-none">
+            <div className="flex items-center gap-2.5 flex-wrap justify-center">
+              {PROJECT_CATEGORIES.map((cat) => {
+                const isSelected = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap"
+                    style={{
+                      background: isSelected ? "var(--color-primary)" : "rgba(226, 232, 240, 0.6)",
+                      color: isSelected ? "#FFFFFF" : "var(--color-text-secondary)",
+                    }}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Project Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Project Grid — Open Flat Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             {filtered.map((project, i) => (
               <motion.div
                 key={i}
@@ -69,50 +72,50 @@ export default function ProjectsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="group bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[var(--shadow-md)] hover:-translate-y-1"
-                style={{ border: "1px solid var(--color-border)" }}
+                className="group flex flex-col justify-between"
               >
-                {/* Image */}
-                <div
-                  className="w-full h-48 flex items-center justify-center overflow-hidden"
-                  style={{ background: "var(--color-primary-light)" }}
-                >
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <Building2 size={40} style={{ color: "var(--color-primary)" }} className="opacity-30" />
-                  )}
-                </div>
+                <div>
+                  {/* Image Container — Unboxed standalone rounded media element */}
+                  <div className="w-full aspect-[16/10] sm:h-52 rounded-2xl sm:rounded-3xl overflow-hidden mb-4 bg-slate-100 shadow-xs relative">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-blue-50">
+                        <Building2 size={40} className="text-[var(--color-primary)] opacity-30" />
+                      </div>
+                    )}
+                  </div>
 
-                <div className="p-5">
-                  <span
-                    className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                    style={{ background: "var(--color-primary-light)", color: "var(--color-primary)" }}
-                  >
+                  {/* Category Pill */}
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-primary)] opacity-80 inline-block mb-1">
                     {project.category}
                   </span>
+
+                  {/* Title */}
                   <h3
-                    className="text-base font-bold mt-3 mb-2"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
+                    className="text-base sm:text-lg font-bold mb-3 group-hover:text-[var(--color-primary)] transition-colors leading-snug text-slate-900"
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {project.title}
                   </h3>
-                  <div className="space-y-1.5">
-                    <div className="flex items-center gap-2 text-sm" style={{ color: "var(--color-text-secondary)" }}>
-                      <Building2 size={14} style={{ color: "var(--color-primary)" }} />
-                      {project.client}
+
+                  {/* Metadata list */}
+                  <div className="space-y-1.5 text-xs sm:text-sm text-slate-500 font-medium">
+                    <div className="flex items-center gap-2">
+                      <Building2 size={14} className="text-[var(--color-primary)] flex-shrink-0" />
+                      <span>{project.client}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm" style={{ color: "var(--color-text-secondary)" }}>
-                      <MapPin size={14} style={{ color: "var(--color-primary)" }} />
-                      {project.location}
+                    <div className="flex items-center gap-2">
+                      <MapPin size={14} className="text-[var(--color-primary)] flex-shrink-0" />
+                      <span>{project.location}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm" style={{ color: "var(--color-text-secondary)" }}>
-                      <Calendar size={14} style={{ color: "var(--color-primary)" }} />
-                      {project.date}
+                    <div className="flex items-center gap-2">
+                      <Calendar size={14} className="text-[var(--color-primary)] flex-shrink-0" />
+                      <span>{project.date}</span>
                     </div>
                   </div>
                 </div>

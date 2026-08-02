@@ -14,6 +14,10 @@ import {
   Clock,
   Send,
   CheckCircle2,
+  ExternalLink,
+  Sparkles,
+  ArrowUpRight,
+  ShieldCheck,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { DEFAULT_SETTINGS, SERVICE_INTERESTS } from "@/lib/constants";
@@ -85,86 +89,121 @@ function ContactFormContent() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918421526195";
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start w-full">
-      {/* Left Column: Contact Information */}
+    <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start w-full">
+      {/* Left Column: Contact Information — Clean Minimalist */}
       <div className="w-full lg:w-5/12 flex flex-col gap-6">
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
-          <div className="pb-5 mb-6 border-b border-slate-100">
+        <div>
+          <div className="pb-4 mb-6 border-b border-slate-200/80">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-600 block mb-1">
               Direct Connect
             </span>
-            <h2 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+            <h2
+              className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               Contact Information
             </h2>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Reach out to our engineering office in Ch. Sambhaji Nagar, Maharashtra
             </p>
           </div>
 
-          <div className="flex flex-col gap-5">
-            {[
-              {
-                icon: MapPin,
-                label: "Headquarters Address",
-                value: "Ocean MGPS Sales & Multi Services\nCh. Sambhaji Nagar, Maharashtra 431005, India",
-              },
-              {
-                icon: Phone,
-                label: "Direct Helplines",
-                value: "+91 8421526195 / +91 8007515182",
-              },
-              {
-                icon: Mail,
-                label: "Official Email",
-                value: "oceanmgps@gmail.com",
-              },
-              {
-                icon: Clock,
-                label: "Business Hours",
-                value: DEFAULT_SETTINGS.businessHours,
-              },
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3.5">
-                <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
-                  <item.icon size={18} />
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
-                    {item.label}
-                  </span>
-                  <p className="text-sm font-medium text-slate-800 whitespace-pre-line leading-relaxed">
-                    {item.value}
-                  </p>
-                </div>
+          {/* Simple Unboxed Info List */}
+          <div className="space-y-5">
+            {/* Address */}
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+                <MapPin size={18} />
               </div>
-            ))}
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                  Headquarters Address
+                </span>
+                <p className="text-sm font-semibold text-slate-800 leading-snug">
+                  Ocean MGPS Sales & Multi Services
+                </p>
+                <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                  Ch. Sambhaji Nagar, Maharashtra 431005, India
+                </p>
+              </div>
+            </div>
+
+            {/* Helplines */}
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+                <Phone size={18} />
+              </div>
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                  Direct Helplines
+                </span>
+                <p className="text-sm font-semibold text-slate-800">
+                  <a href="tel:8421526195" className="hover:text-blue-600 transition-colors">+91 8421526195</a>
+                  {" / "}
+                  <a href="tel:8007515182" className="hover:text-blue-600 transition-colors">+91 8007515182</a>
+                </p>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+                <Mail size={18} />
+              </div>
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                  Official Email
+                </span>
+                <a
+                  href="mailto:oceanmgps@gmail.com"
+                  className="text-sm font-semibold text-slate-800 hover:text-blue-600 transition-colors"
+                >
+                  oceanmgps@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* Business Hours */}
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+                <Clock size={18} />
+              </div>
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                  Business Hours
+                </span>
+                <p className="text-sm font-semibold text-slate-800">
+                  {DEFAULT_SETTINGS.businessHours}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* WhatsApp Banner */}
+        {/* Simple Green WhatsApp Button */}
         <a
           href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello Ocean MGPS team! I would like to enquire about hospital gas pipeline systems.")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full bg-emerald-50 border border-emerald-200 rounded-2xl p-5 flex items-center justify-between text-emerald-950 no-underline transition-all hover:bg-emerald-100"
+          className="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-xl p-4 sm:p-5 flex items-center justify-between no-underline transition-all shadow-xs hover:shadow-md"
         >
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+            <div className="w-11 h-11 rounded-xl bg-white/20 text-white flex items-center justify-center flex-shrink-0">
               <WhatsAppIcon size={22} className="text-white" />
             </div>
             <div>
-              <span className="text-sm font-bold block text-emerald-950">Chat on WhatsApp</span>
-              <p className="text-xs text-emerald-800">Instant technical support & product quotes</p>
+              <span className="text-sm font-bold block text-white">Chat on WhatsApp</span>
+              <p className="text-xs text-white/90">Instant technical support & product quotes</p>
             </div>
           </div>
-          <span className="text-xs font-bold px-3.5 py-2 rounded-full bg-emerald-600 text-white hidden sm:inline-block shadow-xs">
+          <span className="text-xs font-bold px-3.5 py-2 rounded-full bg-white text-[#25D366] hidden sm:inline-block shadow-xs">
             Open Chat →
           </span>
         </a>
       </div>
 
-      {/* Right Column: Enquiry Form */}
-      <div className="w-full lg:w-7/12 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+      {/* Right Column: Enquiry Form — Unboxed */}
+      <div className="w-full lg:w-7/12">
         {submitted ? (
           <div className="text-center py-12 space-y-4">
             <div className="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
@@ -185,7 +224,7 @@ function ContactFormContent() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="w-full">
-            <div className="pb-5 mb-6 border-b border-slate-100">
+            <div className="pb-4 mb-6 border-b border-slate-200/80">
               <h2 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
                 Send Technical Enquiry
               </h2>
@@ -205,7 +244,7 @@ function ContactFormContent() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-md border border-slate-200 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                   placeholder="e.g. Dr. Rajesh Sharma"
                 />
               </div>
@@ -221,7 +260,7 @@ function ContactFormContent() {
                   onChange={handleChange}
                   required
                   pattern="[0-9]{10}"
-                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-md border border-slate-200 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                   placeholder="10-digit mobile number"
                 />
               </div>
@@ -238,7 +277,7 @@ function ContactFormContent() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-md border border-slate-200 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                   placeholder="you@hospital.com"
                 />
               </div>
@@ -252,7 +291,7 @@ function ContactFormContent() {
                   name="organization"
                   value={formData.organization}
                   onChange={handleChange}
-                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-md border border-slate-200 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
                   placeholder="e.g. City Multi-Specialty Hospital"
                 />
               </div>
@@ -266,7 +305,7 @@ function ContactFormContent() {
                 name="serviceInterest"
                 value={formData.serviceInterest}
                 onChange={handleChange}
-                className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all cursor-pointer"
+                className="w-full h-11 px-3.5 text-sm font-medium rounded-md border border-slate-200 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all cursor-pointer"
               >
                 <option value="">Select a service category</option>
                 {SERVICE_INTERESTS.map((service) => (
@@ -287,7 +326,7 @@ function ContactFormContent() {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="w-full p-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-none leading-relaxed"
+                className="w-full p-3.5 text-sm font-medium rounded-md border border-slate-200 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-none leading-relaxed"
                 placeholder="Specify your bed capacity, required gas outlets (O2, Vacuum, Air), manifold setup, or equipment needs..."
               />
             </div>
@@ -295,7 +334,7 @@ function ContactFormContent() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-md shadow-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer group"
               style={{ opacity: submitting ? 0.7 : 1 }}
             >
               {submitting ? (
@@ -305,7 +344,7 @@ function ContactFormContent() {
                 </>
               ) : (
                 <>
-                  <Send size={16} />
+                  <Send size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   Submit Technical Enquiry
                 </>
               )}
@@ -324,15 +363,17 @@ export default function ContactPage() {
       <section className="section pb-6 sm:pb-8" style={{ background: "var(--color-bg-primary)" }}>
         <div className="container text-center max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
-            <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 text-xs font-semibold shadow-xs"
-              style={{
-                background: "var(--color-primary-light)",
-                color: "var(--color-primary)",
-              }}
-            >
-              <MapPin size={14} /> Ch. Sambhaji Nagar, Maharashtra
-            </span>
+            <div className="mb-5">
+              <span
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
+                style={{
+                  background: "var(--color-primary-light)",
+                  color: "var(--color-primary)",
+                }}
+              >
+                <MapPin size={14} /> Ch. Sambhaji Nagar, Maharashtra
+              </span>
+            </div>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
               style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
@@ -346,7 +387,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Main Form & Contact Info Section */}
+      {/* Main Form & Contact Info Section — Unboxed */}
       <section className="section pt-4 pb-16 sm:pb-20" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container max-w-6xl">
           <Suspense fallback={<div className="text-center py-12">Loading form...</div>}>
@@ -355,11 +396,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Google Maps Location */}
+      {/* Google Maps Location — Unboxed */}
       <section className="section pt-0 pb-20" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container max-w-6xl">
-          <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm">
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+          <div>
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-200/80">
               <div>
                 <h3
                   className="text-lg sm:text-xl font-bold text-slate-900"
@@ -371,12 +412,12 @@ export default function ContactPage() {
                   Ch. Sambhaji Nagar, Maharashtra 431005, India | Mon - Sat: 9:00 AM - 7:00 PM
                 </p>
               </div>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-100 hidden sm:inline-block">
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-600 hidden sm:inline-block">
                 Map View
               </span>
             </div>
 
-            <div className="rounded-xl overflow-hidden border border-slate-200">
+            <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d75.35!3d19.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDUyJzQ4LjAiTiA3NcKwMjEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
                 width="100%"

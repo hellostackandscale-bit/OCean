@@ -167,15 +167,17 @@ export default function ServicesPage() {
       <section className="section pb-8 sm:pb-12" style={{ background: "var(--color-bg-primary)" }}>
         <div className="container text-center max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
-            <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 text-xs font-semibold shadow-xs"
-              style={{
-                background: "var(--color-primary-light)",
-                color: "var(--color-primary)",
-              }}
-            >
-              <ShieldCheck size={14} /> Certified Medical Gas Engineering
-            </span>
+            <div className="mb-5">
+              <span
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold"
+                style={{
+                  background: "var(--color-primary-light)",
+                  color: "var(--color-primary)",
+                }}
+              >
+                <ShieldCheck size={14} /> Certified Medical Gas Engineering
+              </span>
+            </div>
             <h1
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
               style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
@@ -194,10 +196,7 @@ export default function ServicesPage() {
         <div className="container">
           {/* Category Filter Scrollbar */}
           <div className="flex overflow-x-auto pb-4 gap-2 mb-10 sm:mb-12 justify-start sm:justify-center items-center pt-2 scrollbar-none">
-            <div className="flex items-center gap-2 bg-white p-1.5 rounded-full border border-slate-200/80 shadow-xs">
-              <span className="p-2 text-slate-400 hidden sm:inline-flex items-center justify-center">
-                <Filter size={16} />
-              </span>
+            <div className="flex items-center gap-2.5 flex-wrap justify-center">
               {categories.map((cat) => {
                 const isSelected = activeCategory === cat;
                 return (
@@ -206,9 +205,8 @@ export default function ServicesPage() {
                     onClick={() => setActiveCategory(cat)}
                     className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap"
                     style={{
-                      background: isSelected ? "var(--color-primary)" : "transparent",
+                      background: isSelected ? "var(--color-primary)" : "rgba(226, 232, 240, 0.6)",
                       color: isSelected ? "#FFFFFF" : "var(--color-text-secondary)",
-                      boxShadow: isSelected ? "0 4px 12px rgba(21, 101, 192, 0.2)" : "none",
                     }}
                   >
                     {cat}
@@ -218,37 +216,36 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Services Grid Cards */}
-          <div className="flex flex-col gap-8 sm:gap-10 mb-10 sm:mb-12">
+          {/* Services List — Open Flat Layout */}
+          <div className="flex flex-col mb-10 sm:mb-12">
             {filteredServices.map((service, i) => (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.07, duration: 0.4 }}
-                className="bg-white rounded-3xl border border-slate-100/90 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_40px_-8px_rgba(21,101,192,0.08)] transition-all duration-300 overflow-hidden group"
+                transition={{ delay: i * 0.06, duration: 0.4 }}
+                className="group"
               >
-                <div className="p-6 sm:p-8 md:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
+                {/* Divider between items */}
+                {i > 0 && <div className="border-t border-slate-200/70 my-2" />}
+
+                <div className="py-8 sm:py-10 md:py-12 flex flex-col lg:flex-row gap-8 lg:gap-14">
                   {/* Left Column: Title, Description & Action Buttons */}
-                  <div className="lg:w-7/12 flex flex-col justify-between space-y-6">
+                  <div className="lg:w-7/12 flex flex-col justify-between space-y-5">
                     <div>
-                      {/* Top Header Row */}
+                      {/* Header Row */}
                       <div className="flex items-start justify-between gap-3 mb-4">
-                        <div className="flex items-center gap-3">
-                          <div
-                            className="w-12 h-12 rounded-2xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0 shadow-xs"
-                          >
-                            <service.icon size={22} />
+                        <div className="flex items-center gap-3.5">
+                          <div className="w-11 h-11 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
+                            <service.icon size={20} />
                           </div>
                           <div>
-                            <span
-                              className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded bg-blue-50 text-[var(--color-primary)] inline-block mb-1"
-                            >
+                            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-primary)] opacity-70 inline-block mb-0.5">
                               {service.category}
                             </span>
                             <h2
-                              className="text-lg sm:text-2xl font-bold leading-tight text-slate-900"
+                              className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-slate-900"
                               style={{ fontFamily: "var(--font-display)" }}
                             >
                               {service.title}
@@ -256,27 +253,25 @@ export default function ServicesPage() {
                           </div>
                         </div>
 
-                        <span
-                          className="text-[11px] font-extrabold px-3 py-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-[var(--color-primary)] transition-colors duration-300 flex-shrink-0"
-                        >
+                        <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-blue-50/80 text-[var(--color-primary)] flex-shrink-0 mt-1">
                           {service.badge}
                         </span>
                       </div>
 
                       {/* Tagline & Description */}
-                      <p className="text-xs sm:text-sm font-semibold text-slate-500 mb-3 leading-relaxed">
+                      <p className="text-xs sm:text-sm font-medium text-slate-400 mb-2 leading-relaxed">
                         {service.tagline}
                       </p>
-                      <p className="text-xs sm:text-sm leading-relaxed text-slate-600 mb-6">
+                      <p className="text-sm leading-relaxed text-slate-600 max-w-xl">
                         {service.description}
                       </p>
                     </div>
 
                     {/* Action Buttons Row */}
-                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-5 border-t border-slate-100">
+                    <div className="flex flex-col sm:flex-row items-start gap-3 pt-2">
                       <Link
                         href={`/contact?service=${encodeURIComponent(service.title)}`}
-                        className="btn btn-primary btn-lg w-full sm:w-auto text-xs sm:text-sm justify-center rounded-xl py-3.5 px-6 shadow-xs hover:shadow-md transition-all font-bold"
+                        className="btn btn-primary btn-lg w-full sm:w-auto text-xs sm:text-sm justify-center rounded-xl py-3 px-6 shadow-xs hover:shadow-md transition-all font-bold"
                       >
                         Enquire for {service.title.split(" ")[0]}
                         <ArrowRight size={16} />
@@ -285,39 +280,35 @@ export default function ServicesPage() {
                       <button
                         type="button"
                         onClick={() => setSelectedService(service)}
-                        className="btn btn-outline btn-lg w-full sm:w-auto text-xs sm:text-sm justify-center rounded-xl py-3.5 px-6 transition-all font-bold cursor-pointer"
+                        className="btn btn-outline btn-lg w-full sm:w-auto text-xs sm:text-sm justify-center rounded-xl py-3 px-6 transition-all font-bold cursor-pointer"
                       >
                         <Sparkles size={14} /> Full Scope & Specs
                       </button>
                     </div>
                   </div>
 
-                  {/* Right Column: Key Deliverables Checklist Box */}
-                  <div
-                    className="lg:w-5/12 p-6 sm:p-8 rounded-2xl flex flex-col justify-between bg-slate-50/70 border border-slate-200/50"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-200/60">
-                        <h4
-                          className="text-xs font-bold uppercase tracking-wider text-slate-900"
-                          style={{ fontFamily: "var(--font-display)" }}
-                        >
-                          Key Deliverables
-                        </h4>
-                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-white text-slate-500 border border-slate-200 shadow-xs">
-                          {service.leadTime}
-                        </span>
-                      </div>
-
-                      <ul className="space-y-3">
-                        {service.features.map((feature, j) => (
-                          <li key={j} className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-slate-600">
-                            <CheckCircle2 size={16} className="mt-0.5 flex-shrink-0 text-[var(--color-primary)]" />
-                            <span className="leading-snug">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  {/* Right Column: Key Deliverables */}
+                  <div className="lg:w-5/12 flex flex-col justify-start">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4
+                        className="text-[11px] font-bold uppercase tracking-wider text-slate-400"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        Key Deliverables
+                      </h4>
+                      <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500">
+                        {service.leadTime}
+                      </span>
                     </div>
+
+                    <ul className="space-y-2.5">
+                      {service.features.map((feature, j) => (
+                        <li key={j} className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-slate-600">
+                          <CheckCircle2 size={15} className="mt-0.5 flex-shrink-0 text-[var(--color-primary)]" />
+                          <span className="leading-snug">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </motion.div>

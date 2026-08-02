@@ -22,22 +22,20 @@ export default function CTABanner() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 bg-white"
-          style={{
-            border: "1px solid var(--color-border)",
-            boxShadow: "var(--shadow-md)",
-          }}
+          className="text-center py-6 sm:py-8"
         >
           <div className="max-w-2xl mx-auto">
             {/* Top Pill */}
-            <div
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-4 text-xs font-semibold"
-              style={{
-                background: "var(--color-primary-light)",
-                color: "var(--color-primary)",
-              }}
-            >
-              <PhoneCall size={14} /> Quick Consultation & BOQ Quote
+            <div className="mb-4">
+              <span
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold"
+                style={{
+                  background: "var(--color-primary-light)",
+                  color: "var(--color-primary)",
+                }}
+              >
+                <PhoneCall size={14} /> Quick Consultation & BOQ Quote
+              </span>
             </div>
 
             {/* Heading */}

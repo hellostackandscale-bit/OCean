@@ -131,9 +131,11 @@ export default function ServicesPreview() {
       <div className="container relative z-10">
         {/* Section Heading */}
         <div className="section-heading mb-12">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-1.5 rounded-full bg-blue-50 text-[var(--color-primary)] mb-3">
-            <Sparkles size={12} /> High-Standard Medical Solutions
-          </span>
+          <div className="mb-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-1.5 rounded-full bg-blue-50 text-[var(--color-primary)]">
+              <Sparkles size={12} /> High-Standard Medical Solutions
+            </span>
+          </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
             Our Specialized Services
           </h2>
@@ -143,7 +145,7 @@ export default function ServicesPreview() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 mb-14 sm:mb-16">
           {services.map((service, i) => (
             <motion.div
               key={service.id}
@@ -151,68 +153,57 @@ export default function ServicesPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07, duration: 0.4 }}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -4 }}
               onClick={() => setSelectedService(service)}
-              className="group bg-white rounded-3xl p-7 sm:p-8 border border-slate-100/90 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_40px_-8px_rgba(21,101,192,0.12)] hover:border-blue-600/30 transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden"
+              className="group cursor-pointer flex flex-col justify-between"
             >
-              {/* Subtle hover background highlight */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/0 to-blue-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-              <div className="relative z-10">
-                {/* Header Row: Icon + Number Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    className="w-12 h-12 rounded-2xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-xs"
-                  >
-                    <service.icon size={22} />
-                  </div>
-                  <span
-                    className="text-xs font-bold font-mono px-3 py-1 rounded-full bg-slate-100/70 text-slate-500 group-hover:bg-blue-50 group-hover:text-[var(--color-primary)] transition-colors duration-300"
-                  >
-                    {service.badge}
-                  </span>
+              {/* Header Row: Icon + Number Badge */}
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-11 h-11 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center">
+                  <service.icon size={20} />
                 </div>
-
-                {/* Title */}
-                <h3
-                  className="text-lg sm:text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-[var(--color-primary)] text-slate-900 leading-snug"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm leading-relaxed mb-6 text-slate-500 font-medium">
-                  {service.description}
-                </p>
-
-                {/* Feature Tags */}
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {service.tags.map((tag, j) => (
-                    <span
-                      key={j}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1 rounded-full bg-slate-50 border border-slate-200/50 text-slate-600 group-hover:bg-slate-100/60 transition-colors"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <span className="text-xs font-bold font-mono text-slate-400 group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                  {service.badge}
+                </span>
               </div>
 
-              {/* Bottom CTA Trigger Bar */}
-              <div className="w-full mt-8 py-3 px-4 rounded-xl border border-blue-600/10 text-blue-600 font-bold text-xs sm:text-sm flex items-center justify-between group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:border-[var(--color-primary)] transition-all duration-300 shadow-xs relative z-10">
+              {/* Title */}
+              <h3
+                className="text-lg sm:text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-[var(--color-primary)] text-slate-900 leading-snug"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {service.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm leading-relaxed mb-5 text-slate-500">
+                {service.description}
+              </p>
+
+              {/* Feature Tags */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {service.tags.map((tag, j) => (
+                  <span
+                    key={j}
+                    className="inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-slate-100/60 text-slate-500"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-blue-500" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Bottom CTA — simple text link */}
+              <div className="flex items-center gap-2 text-[var(--color-primary)] font-bold text-sm group-hover:gap-3 transition-all duration-300 mt-auto pb-2">
                 <span>Explore Full Scope</span>
-                <div className="w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
-                  <ArrowRight size={14} />
-                </div>
+                <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* View All CTA */}
-        <div className="text-center pt-4 sm:pt-6">
+        {/* View All CTA — Clear vertical separation */}
+        <div className="text-center pt-8 sm:pt-10 mt-6 border-t border-slate-200/60">
           <Link href="/services" className="inline-flex items-center gap-2 btn btn-primary btn-lg w-full sm:w-auto font-bold shadow-md hover:shadow-lg transition-all px-8 py-4 rounded-full">
             <span>View All Services & Specifications</span>
             <ArrowRight size={18} />
