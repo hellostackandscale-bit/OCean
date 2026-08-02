@@ -8,7 +8,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Wrench, ShoppingBag, Settings, Stethoscope, Building2, Headphones, Check, X, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ArrowRight, Wrench, ShoppingBag, Settings, Stethoscope, Building2, Headphones, Check, X, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 
 const services = [
   {
@@ -121,43 +121,53 @@ export default function ServicesPreview() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
 
   return (
-    <section className="section relative overflow-hidden" style={{ background: "var(--color-bg-secondary)" }}>
+    <section className="section relative overflow-hidden" style={{ background: "var(--color-bg-secondary)", paddingBottom: "5.5rem" }}>
       {/* Background Subtle Gradient Glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-15 pointer-events-none blur-3xl"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.08] pointer-events-none blur-3xl"
         style={{ background: "radial-gradient(circle, var(--color-primary) 0%, transparent 70%)" }}
       />
 
       <div className="container relative z-10">
         {/* Section Heading */}
-        <div className="section-heading">
-          <h2>Our Services</h2>
-          <p>Comprehensive medical gas pipeline solutions tailored for modern healthcare facilities</p>
+        <div className="section-heading mb-12">
+          <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-1.5 rounded-full bg-blue-50 text-[var(--color-primary)] mb-3">
+            <Sparkles size={12} /> High-Standard Medical Solutions
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+            Our Specialized Services
+          </h2>
+          <p className="max-w-2xl mx-auto text-slate-500 text-sm sm:text-base leading-relaxed mt-2">
+            Comprehensive, certified medical gas pipeline solutions designed and executed for modern, high-capacity healthcare facilities across India.
+          </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
           {services.map((service, i) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.07 }}
-              whileHover={{ y: -4 }}
+              transition={{ delay: i * 0.07, duration: 0.4 }}
+              whileHover={{ y: -6 }}
               onClick={() => setSelectedService(service)}
-              className="group bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-[var(--color-primary)] transition-all duration-300 flex flex-col justify-between cursor-pointer"
+              className="group bg-white rounded-3xl p-7 sm:p-8 border border-slate-100/90 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] hover:shadow-[0_20px_40px_-8px_rgba(21,101,192,0.12)] hover:border-blue-600/30 transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden"
             >
-              <div>
+              {/* Subtle hover background highlight */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-blue-50/0 to-blue-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+              <div className="relative z-10">
                 {/* Header Row: Icon + Number Badge */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-6">
                   <div
                     className="w-12 h-12 rounded-2xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-xs"
                   >
-                    <service.icon size={24} style={{ color: "var(--color-primary)" }} />
+                    <service.icon size={22} />
                   </div>
                   <span
-                    className="text-xs font-extrabold px-3 py-1 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-[var(--color-primary)] transition-colors"
+                    className="text-xs font-bold font-mono px-3 py-1 rounded-full bg-slate-100/70 text-slate-500 group-hover:bg-blue-50 group-hover:text-[var(--color-primary)] transition-colors duration-300"
                   >
                     {service.badge}
                   </span>
@@ -165,25 +175,25 @@ export default function ServicesPreview() {
 
                 {/* Title */}
                 <h3
-                  className="text-lg sm:text-xl font-bold mb-2.5 transition-colors group-hover:text-[var(--color-primary)] text-slate-900"
+                  className="text-lg sm:text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-[var(--color-primary)] text-slate-900 leading-snug"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm leading-relaxed mb-5 text-slate-600">
+                <p className="text-xs sm:text-sm leading-relaxed mb-6 text-slate-500 font-medium">
                   {service.description}
                 </p>
 
                 {/* Feature Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-2">
+                <div className="flex flex-wrap gap-2 mb-2">
                   {service.tags.map((tag, j) => (
                     <span
                       key={j}
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-700"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1 rounded-full bg-slate-50 border border-slate-200/50 text-slate-600 group-hover:bg-slate-100/60 transition-colors"
                     >
-                      <Check size={11} className="text-[var(--color-primary)]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                       {tag}
                     </span>
                   ))}
@@ -191,9 +201,9 @@ export default function ServicesPreview() {
               </div>
 
               {/* Bottom CTA Trigger Bar */}
-              <div className="w-full mt-6 py-2.5 px-4 rounded-xl bg-blue-50/80 text-[var(--color-primary)] font-bold text-xs sm:text-sm flex items-center justify-between group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all shadow-xs">
-                <span>Explore Full Info & Scope</span>
-                <div className="w-6 h-6 rounded-full flex items-center justify-center transition-transform group-hover:translate-x-1">
+              <div className="w-full mt-8 py-3 px-4 rounded-xl border border-blue-600/10 text-blue-600 font-bold text-xs sm:text-sm flex items-center justify-between group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:border-[var(--color-primary)] transition-all duration-300 shadow-xs relative z-10">
+                <span>Explore Full Scope</span>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
                   <ArrowRight size={14} />
                 </div>
               </div>
@@ -203,8 +213,9 @@ export default function ServicesPreview() {
 
         {/* View All CTA */}
         <div className="text-center pt-4 sm:pt-6">
-          <Link href="/services" className="btn btn-primary btn-lg w-full sm:w-auto font-bold shadow-md hover:shadow-lg transition-all px-8 py-3.5">
-            View All Services & Specifications <ArrowRight size={18} />
+          <Link href="/services" className="inline-flex items-center gap-2 btn btn-primary btn-lg w-full sm:w-auto font-bold shadow-md hover:shadow-lg transition-all px-8 py-4 rounded-full">
+            <span>View All Services & Specifications</span>
+            <ArrowRight size={18} />
           </Link>
         </div>
       </div>
@@ -227,7 +238,7 @@ export default function ServicesPreview() {
               initial={{ opacity: 0, scale: 0.95, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              className="relative w-full max-w-xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
+              className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 max-h-[85vh] flex flex-col"
               style={{ border: "1px solid var(--color-border)" }}
             >
               {/* Header Accent Bar */}
@@ -237,9 +248,9 @@ export default function ServicesPreview() {
               />
 
               {/* Scrollable Content Container */}
-              <div className="p-5 sm:p-7 overflow-y-auto flex-1 space-y-5">
+              <div className="p-6 sm:p-8 overflow-y-auto flex-1 space-y-6">
                 {/* Header & Close Button Row */}
-                <div className="flex items-start justify-between gap-3 pb-3 border-b border-[var(--color-border-light)]">
+                <div className="flex items-start justify-between gap-3 pb-4 border-b border-[var(--color-border-light)]">
                   <div className="flex items-center gap-3">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -271,7 +282,7 @@ export default function ServicesPreview() {
 
                   <button
                     onClick={() => setSelectedService(null)}
-                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-500 transition-colors flex-shrink-0 mt-0.5"
+                    className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-500 transition-colors flex-shrink-0 mt-0.5 cursor-pointer"
                     aria-label="Close"
                   >
                     <X size={18} />
@@ -293,7 +304,7 @@ export default function ServicesPreview() {
 
                 {/* Section 2: Key Deliverables Card Box */}
                 <div
-                  className="p-4 sm:p-5 rounded-xl"
+                  className="p-5 sm:p-6 rounded-2xl"
                   style={{
                     background: "var(--color-bg-tertiary)",
                     border: "1px solid var(--color-border-light)",
@@ -308,7 +319,7 @@ export default function ServicesPreview() {
                       Key Deliverables Included
                     </h4>
                   </div>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {selectedService.features.map((feature, j) => (
                       <li key={j} className="flex items-start gap-2.5 text-xs sm:text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>
                         <CheckCircle2 size={15} className="mt-0.5 flex-shrink-0" style={{ color: "var(--color-primary)" }} />
@@ -323,14 +334,14 @@ export default function ServicesPreview() {
                   <Link
                     href={`/contact?service=${encodeURIComponent(selectedService.title)}`}
                     onClick={() => setSelectedService(null)}
-                    className="btn btn-primary btn-lg w-full justify-center text-sm"
+                    className="btn btn-primary btn-lg w-full justify-center text-sm rounded-xl py-3"
                   >
                     Enquire for {selectedService.title} <ArrowRight size={16} />
                   </Link>
                   <button
                     type="button"
                     onClick={() => setSelectedService(null)}
-                    className="btn btn-outline btn-lg w-full sm:w-auto justify-center text-sm"
+                    className="btn btn-outline btn-lg w-full sm:w-auto justify-center text-sm rounded-xl py-3 cursor-pointer"
                   >
                     Close
                   </button>
