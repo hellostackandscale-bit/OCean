@@ -10,12 +10,12 @@ import { MapPin, Calendar, Building2, Filter } from "lucide-react";
 import { PROJECT_CATEGORIES } from "@/lib/constants";
 
 const staticProjects = [
-  { title: "Complete MGPS Installation — Shri Sai Hospital", client: "Shri Sai Hospital", location: "Aurangabad, MH", date: "Jan 2025", category: "MGPS Installation", image: "/images/projects/mgps-installation.png" },
+  { title: "Complete MGPS Installation — Shri Sai Hospital", client: "Shri Sai Hospital", location: "Ch. Sambhaji Nagar, MH", date: "Jan 2025", category: "MGPS Installation", image: "/images/projects/mgps-installation.png" },
   { title: "Modular OT & MGPS — Lifeline Multi-Specialty", client: "Lifeline Hospital", location: "Pune, MH", date: "Mar 2025", category: "Modular OT Setup", image: "/images/products/modular-ot.png" },
   { title: "Pipeline Renovation — District General Hospital", client: "District Hospital", location: "Nashik, MH", date: "Nov 2024", category: "Pipeline Work", image: "/images/projects/mgps-installation.png" },
   { title: "Greenfield MGPS — Apollo Care Hospital", client: "Apollo Care Hospital", location: "Mumbai, MH", date: "Aug 2024", category: "MGPS Installation", image: "/images/projects/mgps-installation.png" },
   { title: "Equipment Supply — Government Medical College", client: "Government Medical College", location: "Nagpur, MH", date: "Jun 2024", category: "Hospital Setup", image: "/images/products/manifold-system.png" },
-  { title: "Emergency ICU Expansion — City Care Hospital", client: "City Care Hospital", location: "Aurangabad, MH", date: "Feb 2024", category: "MGPS Installation", image: "/images/products/bed-head-panel.png" },
+  { title: "Emergency ICU Expansion — City Care Hospital", client: "City Care Hospital", location: "Ch. Sambhaji Nagar, MH", date: "Feb 2024", category: "MGPS Installation", image: "/images/products/bed-head-panel.png" },
 ];
 
 export default function ProjectsPage() {

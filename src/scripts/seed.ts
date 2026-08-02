@@ -500,8 +500,8 @@ const projects = [
 const siteSettings = {
   companyName: "Ocean MGPS Sales & Multi Services",
   tagline: "MGPS Installer | Sales & Multi Services",
-  about: "We are a highly specialized stockist, supplier, and installer of Medical Gas Pipeline Systems and hospital equipment. Based in Aurangabad, Maharashtra, we serve healthcare facilities across India with quality products, expert installation services, and reliable after-sales support. With over a decade of experience and 150+ successful projects, we are your trusted partner for all MGPS needs.",
-  address: "Mukund wadi, N-2, CIDCO, Aurangabad (Chhatrapati Sambhajinagar), Maharashtra 431003, India",
+  about: "We are a highly specialized stockist, supplier, and installer of Medical Gas Pipeline Systems and hospital equipment. Based in Ch. Sambhaji Nagar, Maharashtra, we serve healthcare facilities across India with quality products, expert installation services, and reliable after-sales support. With over a decade of experience and 150+ successful projects, we are your trusted partner for all MGPS needs.",
+  address: "Mukund wadi, N-2, CIDCO, Ch. Sambhaji Nagar, Maharashtra 431003, India",
   phones: ["8421526195", "8007515182"],
   email: "oceanmgps@gmail.com",
   whatsapp: "918421526195",

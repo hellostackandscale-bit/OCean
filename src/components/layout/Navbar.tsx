@@ -1,5 +1,5 @@
 // ============================================
-// Navbar — Sticky White with Blue Accents
+// Navbar — Spacious, Modern & High-End Header
 // ============================================
 
 "use client";
@@ -19,7 +19,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,100 +33,99 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-[var(--shadow-sm)]"
-          : "bg-white"
+          ? "bg-white/95 backdrop-blur-md shadow-md py-1"
+          : "bg-white py-1.5"
       }`}
       style={{ borderBottom: "1px solid var(--color-border-light)" }}
     >
       <div className="container">
-        <div className="flex items-center justify-between h-[72px]">
+        <div className="flex items-center justify-between h-16 sm:h-[72px]">
           {/* Logo */}
           <Logo size="md" />
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative px-3 py-2 text-[15px] font-medium no-underline transition-colors duration-200"
-                style={{
-                  color: pathname === link.href ? "var(--color-primary)" : "var(--color-text-primary)",
-                }}
-              >
-                {link.label}
-                {pathname === link.href && (
-                  <motion.div
-                    layoutId="activeLink"
-                    className="absolute bottom-0 left-3 right-3 h-[2px]"
-                    style={{ background: "var(--color-primary)" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
+          {/* Desktop Navigation — Spacious Pill Styling */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2 bg-slate-50/80 p-1.5 rounded-full border border-slate-200/60">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative px-3 xl:px-3.5 py-1.5 text-xs xl:text-sm font-semibold rounded-full no-underline transition-all duration-200 whitespace-nowrap ${
+                    isActive
+                      ? "text-[var(--color-primary)] font-bold bg-white shadow-xs"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex btn btn-primary btn-sm"
+              className="hidden sm:inline-flex btn btn-primary btn-sm rounded-full px-4 py-2 font-bold shadow-xs hover:shadow-md transition-all"
             >
               <Phone size={14} />
               Get Quote
             </Link>
 
-            {/* Mobile Hamburger */}
+            {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-lg transition-colors"
-              style={{ color: "var(--color-text-primary)" }}
+              className="lg:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200 transition-colors text-slate-700"
               aria-label="Toggle menu"
+              suppressHydrationWarning
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="lg:hidden overflow-y-auto max-h-[calc(100vh-72px)] bg-white"
-            style={{ borderTop: "1px solid var(--color-border)" }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="lg:hidden overflow-y-auto max-h-[calc(100vh-72px)] bg-white border-t border-[var(--color-border-light)] shadow-lg"
           >
-            <div className="container py-4 flex flex-col gap-1">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="block px-4 py-3 rounded-lg text-[15px] font-medium no-underline transition-colors"
-                    style={{
-                      color: pathname === link.href ? "var(--color-primary)" : "var(--color-text-primary)",
-                      background: pathname === link.href ? "var(--color-primary-light)" : "transparent",
-                    }}
+            <div className="container py-4 flex flex-col gap-1.5">
+              {NAV_LINKS.map((link, i) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.03 }}
                   >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      className={`block px-4 py-3 rounded-xl text-sm font-semibold no-underline transition-colors ${
+                        isActive
+                          ? "bg-[var(--color-primary-light)] text-[var(--color-primary)] font-bold"
+                          : "text-slate-700 hover:bg-slate-100"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <Link
                 href="/contact"
-                className="btn btn-primary mt-2"
-                style={{ textAlign: "center" }}
+                className="btn btn-primary w-full mt-3 justify-center text-sm font-bold py-3 rounded-xl"
               >
-                <Phone size={14} />
+                <Phone size={16} />
                 Get Quote
               </Link>
             </div>

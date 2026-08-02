@@ -58,7 +58,7 @@ export const DEFAULT_SETTINGS = {
   tagline: "MGPS Installer | Sales & Multi Services",
   about:
     "We are a highly specialized stockist, supplier, and installer of Medical Gas Pipeline Systems and hospital equipment. Serving healthcare facilities across India with quality products and expert installation services.",
-  address: "Mukund wadi, N-2, CIDCO, Aurangabad, Maharashtra, India",
+  address: "Mukund wadi, N-2, CIDCO, Ch. Sambhaji Nagar, Maharashtra, India",
   phones: ["8699848386", "8007515182"],
   email: "oceanmgps@gmail.com",
   whatsapp: "918699848386",
@@ -89,7 +89,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What areas do you serve?",
     answer:
-      "We serve hospitals and healthcare facilities across Maharashtra and pan-India. Our headquarters is in Aurangabad, and we have completed installations across multiple states.",
+      "We serve hospitals and healthcare facilities across Maharashtra and pan-India. Our headquarters is in Ch. Sambhaji Nagar, and we have completed installations across multiple states.",
   },
   {
     question: "Do you provide installation services?",

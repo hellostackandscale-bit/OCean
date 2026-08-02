@@ -46,7 +46,7 @@ export default function Hero() {
             >
               <Shield size={14} className="text-white lg:text-[var(--color-primary)] flex-shrink-0" />
               <span className="text-[11px] sm:text-xs font-semibold text-white lg:text-[var(--color-primary)] truncate">
-                Trusted MGPS Installer • Made in India 🇮🇳
+                Trusted MGPS Installer & Supplier
               </span>
             </motion.div>
 

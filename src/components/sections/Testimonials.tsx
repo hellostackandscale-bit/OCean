@@ -20,8 +20,8 @@ const trustPoints = [
   },
   {
     icon: Factory,
-    title: "Made in India",
-    description: "Proudly supporting Indian manufacturing with locally produced, high-quality components.",
+    title: "IS Standards Compliant",
+    description: "Adhering strictly to Indian Standards (IS 7484) for hospital gas supply and safety.",
   },
   {
     icon: CheckCircle2,
@@ -52,19 +52,23 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="text-center p-6"
+              className="flex flex-col items-center text-center p-6 sm:p-8 bg-white/80 backdrop-blur-sm rounded-2xl"
+              style={{
+                border: "1px solid rgba(21, 101, 192, 0.12)",
+                boxShadow: "var(--shadow-xs)",
+              }}
             >
               <div
-                className="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-4"
+                className="w-14 h-14 rounded-full flex items-center justify-center mb-4 flex-shrink-0"
                 style={{
-                  background: "var(--color-bg-primary)",
-                  boxShadow: "var(--shadow-sm)",
+                  background: "var(--color-primary-light)",
+                  boxShadow: "0 4px 12px rgba(21, 101, 192, 0.15)",
                 }}
               >
-                <point.icon size={24} style={{ color: "var(--color-primary)" }} />
+                <point.icon size={26} style={{ color: "var(--color-primary)" }} />
               </div>
               <h3
-                className="text-base font-bold mb-2"
+                className="text-base sm:text-lg font-bold mb-2"
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--color-primary-dark)",
@@ -72,7 +76,7 @@ export default function Testimonials() {
               >
                 {point.title}
               </h3>
-              <p className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
                 {point.description}
               </p>
             </motion.div>

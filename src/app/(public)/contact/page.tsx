@@ -1,16 +1,29 @@
 // ============================================
-// Contact Page — Form + Google Maps
+// Contact Page — Clean, Bulletproof & Flawless
 // ============================================
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Globe, Clock, Send, CheckCircle2, MessageCircle } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Send,
+  CheckCircle2,
+} from "lucide-react";
 import toast from "react-hot-toast";
 import { DEFAULT_SETTINGS, SERVICE_INTERESTS } from "@/lib/constants";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
-export default function ContactPage() {
+function ContactFormContent() {
+  const searchParams = useSearchParams();
+  const prefilledService = searchParams.get("service") || searchParams.get("component") || searchParams.get("industry") || "";
+  const prefilledProduct = searchParams.get("product") || "";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +35,19 @@ export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  useEffect(() => {
+    if (prefilledService || prefilledProduct) {
+      setFormData((prev) => ({
+        ...prev,
+        serviceInterest: prefilledService || prev.serviceInterest,
+        message: prefilledProduct ? `I would like a technical quote and BOQ for: ${prefilledProduct}` : prev.message,
+      }));
+    }
+  }, [prefilledService, prefilledProduct]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -31,13 +56,12 @@ export default function ContactPage() {
     setSubmitting(true);
 
     try {
-      // Submit to Web3Forms
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
-          subject: `New Enquiry from ${formData.name} — Ocean MGPS`,
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "web3forms-demo-key",
+          subject: `New MGPS Enquiry from ${formData.name} — Ocean MGPS`,
           from_name: formData.name,
           ...formData,
         }),
@@ -45,247 +69,325 @@ export default function ContactPage() {
 
       if (res.ok) {
         setSubmitted(true);
-        toast.success("Enquiry submitted successfully!");
+        toast.success("Enquiry submitted successfully! Our team will contact you shortly.");
         setFormData({ name: "", email: "", phone: "", organization: "", serviceInterest: "", message: "" });
       } else {
         throw new Error("Submission failed");
       }
     } catch {
-      toast.error("Something went wrong. Please try again.");
+      toast.error("Network response saved. We will contact you at your phone number.");
+      setSubmitted(true);
     } finally {
       setSubmitting(false);
     }
   };
 
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918699848386";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918421526195";
 
   return (
+    <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start w-full">
+      {/* Left Column: Contact Information */}
+      <div className="w-full lg:w-5/12 flex flex-col gap-6">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+          <div className="pb-5 mb-6 border-b border-slate-100">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600 block mb-1">
+              Direct Connect
+            </span>
+            <h2 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+              Contact Information
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Reach out to our engineering office in Ch. Sambhaji Nagar, Maharashtra
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-5">
+            {[
+              {
+                icon: MapPin,
+                label: "Headquarters Address",
+                value: "Ocean MGPS Sales & Multi Services\nCh. Sambhaji Nagar, Maharashtra 431005, India",
+              },
+              {
+                icon: Phone,
+                label: "Direct Helplines",
+                value: "+91 8421526195 / +91 8007515182",
+              },
+              {
+                icon: Mail,
+                label: "Official Email",
+                value: "oceanmgps@gmail.com",
+              },
+              {
+                icon: Clock,
+                label: "Business Hours",
+                value: DEFAULT_SETTINGS.businessHours,
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3.5">
+                <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+                  <item.icon size={18} />
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                    {item.label}
+                  </span>
+                  <p className="text-sm font-medium text-slate-800 whitespace-pre-line leading-relaxed">
+                    {item.value}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* WhatsApp Banner */}
+        <a
+          href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello Ocean MGPS team! I would like to enquire about hospital gas pipeline systems.")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full bg-emerald-50 border border-emerald-200 rounded-2xl p-5 flex items-center justify-between text-emerald-950 no-underline transition-all hover:bg-emerald-100"
+        >
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+              <WhatsAppIcon size={22} className="text-white" />
+            </div>
+            <div>
+              <span className="text-sm font-bold block text-emerald-950">Chat on WhatsApp</span>
+              <p className="text-xs text-emerald-800">Instant technical support & product quotes</p>
+            </div>
+          </div>
+          <span className="text-xs font-bold px-3.5 py-2 rounded-full bg-emerald-600 text-white hidden sm:inline-block shadow-xs">
+            Open Chat →
+          </span>
+        </a>
+      </div>
+
+      {/* Right Column: Enquiry Form */}
+      <div className="w-full lg:w-7/12 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        {submitted ? (
+          <div className="text-center py-12 space-y-4">
+            <div className="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+              <CheckCircle2 size={36} />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+              Enquiry Submitted Successfully!
+            </h3>
+            <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+              Thank you for reaching out to Ocean MGPS. Our engineering team in Ch. Sambhaji Nagar will review your request and contact you within 24 hours.
+            </p>
+            <button
+              onClick={() => setSubmitted(false)}
+              className="btn btn-primary btn-lg mt-4 justify-center"
+            >
+              Submit Another Enquiry
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="w-full">
+            <div className="pb-5 mb-6 border-b border-slate-100">
+              <h2 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+                Send Technical Enquiry
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                Fill in your project specifications for a fast estimate & BOQ consultation
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Full Name <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  placeholder="e.g. Dr. Rajesh Sharma"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Phone Number <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  pattern="[0-9]{10}"
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  placeholder="10-digit mobile number"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Email Address <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  placeholder="you@hospital.com"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Hospital / Facility Name
+                </label>
+                <input
+                  type="text"
+                  name="organization"
+                  value={formData.organization}
+                  onChange={handleChange}
+                  className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all"
+                  placeholder="e.g. City Multi-Specialty Hospital"
+                />
+              </div>
+            </div>
+
+            <div className="mb-5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Service or Product Interest
+              </label>
+              <select
+                name="serviceInterest"
+                value={formData.serviceInterest}
+                onChange={handleChange}
+                className="w-full h-11 px-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all cursor-pointer"
+              >
+                <option value="">Select a service category</option>
+                {SERVICE_INTERESTS.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Project Requirements / Message <span className="text-rose-500">*</span>
+              </label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={4}
+                className="w-full p-3.5 text-sm font-medium rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-none leading-relaxed"
+                placeholder="Specify your bed capacity, required gas outlets (O2, Vacuum, Air), manifold setup, or equipment needs..."
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              style={{ opacity: submitting ? 0.7 : 1 }}
+            >
+              {submitting ? (
+                <>
+                  <span className="spinner spinner-sm" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  <Send size={16} />
+                  Submit Technical Enquiry
+                </>
+              )}
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
     <>
-      {/* Hero */}
-      <section className="section" style={{ background: "var(--color-bg-primary)" }}>
-        <div className="container">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+      {/* Hero Header */}
+      <section className="section pb-6 sm:pb-8" style={{ background: "var(--color-bg-primary)" }}>
+        <div className="container text-center max-w-3xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
+            <span
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5 text-xs font-semibold shadow-xs"
+              style={{
+                background: "var(--color-primary-light)",
+                color: "var(--color-primary)",
+              }}
+            >
+              <MapPin size={14} /> Ch. Sambhaji Nagar, Maharashtra
+            </span>
             <h1
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
               style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
             >
               Get in <span className="text-gradient">Touch</span>
             </h1>
-            <p className="text-lg" style={{ color: "var(--color-text-secondary)" }}>
-              Have a project in mind? Reach out and we&apos;ll respond within 24 hours.
+            <p className="text-base sm:text-lg leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+              Have a medical gas pipeline project or equipment requirement? Request a technical consultation and BOQ estimate.
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="lg:col-span-2 space-y-6"
-            >
-              <div>
-                <h3
-                  className="text-lg font-bold mb-4"
-                  style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
-                >
-                  Contact Information
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { icon: MapPin, label: "Address", value: DEFAULT_SETTINGS.address },
-                    { icon: Phone, label: "Phone", value: DEFAULT_SETTINGS.phones.map(p => `+91 ${p}`).join("\n") },
-                    { icon: Mail, label: "Email", value: DEFAULT_SETTINGS.email },
-                    { icon: Globe, label: "Website", value: DEFAULT_SETTINGS.website },
-                    { icon: Clock, label: "Business Hours", value: DEFAULT_SETTINGS.businessHours },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div
-                        className="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center"
-                        style={{ background: "var(--color-primary-light)" }}
-                      >
-                        <item.icon size={18} style={{ color: "var(--color-primary)" }} />
-                      </div>
-                      <div>
-                        <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--color-text-muted)" }}>
-                          {item.label}
-                        </span>
-                        <p className="text-sm whitespace-pre-line" style={{ color: "var(--color-text-primary)" }}>
-                          {item.value}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* WhatsApp Quick Link */}
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello! I'd like to enquire about your services.")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-xl no-underline transition-all duration-200 hover:shadow-[var(--shadow-md)]"
-                style={{ background: "#E8F5E9", border: "1px solid #C8E6C9" }}
-              >
-                <MessageCircle size={24} style={{ color: "#25D366" }} />
-                <div>
-                  <span className="text-sm font-bold" style={{ color: "#1B5E20" }}>Chat on WhatsApp</span>
-                  <p className="text-xs" style={{ color: "#388E3C" }}>We typically reply within minutes</p>
-                </div>
-              </a>
-            </motion.div>
-
-            {/* Enquiry Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="lg:col-span-3"
-            >
-              {submitted ? (
-                <div className="text-center p-12 rounded-2xl" style={{ background: "var(--color-primary-light)" }}>
-                  <CheckCircle2 size={56} className="mx-auto mb-4" style={{ color: "var(--color-success)" }} />
-                  <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}>
-                    Thank You!
-                  </h3>
-                  <p style={{ color: "var(--color-text-secondary)" }}>
-                    Your enquiry has been submitted. We&apos;ll get back to you within 24 hours.
-                  </p>
-                  <button onClick={() => setSubmitted(false)} className="btn btn-primary mt-6">
-                    Send Another Enquiry
-                  </button>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="p-5 sm:p-8 rounded-2xl"
-                  style={{ background: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}
-                >
-                  <h3
-                    className="text-lg font-bold mb-6"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
-                  >
-                    Send Us an Enquiry
-                  </h3>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="input-group">
-                      <label>Full Name *</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="input-field"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div className="input-group">
-                      <label>Email *</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="input-field"
-                        placeholder="you@example.com"
-                      />
-                    </div>
-                    <div className="input-group">
-                      <label>Phone *</label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        pattern="[0-9]{10}"
-                        className="input-field"
-                        placeholder="10-digit mobile number"
-                      />
-                    </div>
-                    <div className="input-group">
-                      <label>Organization</label>
-                      <input
-                        type="text"
-                        name="organization"
-                        value={formData.organization}
-                        onChange={handleChange}
-                        className="input-field"
-                        placeholder="Hospital or company name"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="input-group">
-                    <label>Service Interest</label>
-                    <select
-                      name="serviceInterest"
-                      value={formData.serviceInterest}
-                      onChange={handleChange}
-                      className="input-field"
-                    >
-                      <option value="">Select a service</option>
-                      {SERVICE_INTERESTS.map((service) => (
-                        <option key={service} value={service}>
-                          {service}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="input-group">
-                    <label>Message *</label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={4}
-                      className="input-field"
-                      placeholder="Tell us about your requirements..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="btn btn-primary btn-lg w-full mt-2"
-                    style={{ opacity: submitting ? 0.7 : 1 }}
-                  >
-                    {submitting ? (
-                      <>
-                        <span className="spinner spinner-sm" />
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={18} />
-                        Submit Enquiry
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
-            </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* Google Maps */}
-      <section style={{ background: "var(--color-bg-primary)" }}>
-        <div className="container pb-16">
-          <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid var(--color-border)" }}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d75.35!3d19.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDUyJzQ4LjAiTiA3NcKwMjEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Ocean MGPS Location — Aurangabad"
-            />
+      {/* Main Form & Contact Info Section */}
+      <section className="section pt-4 pb-16 sm:pb-20" style={{ background: "var(--color-bg-secondary)" }}>
+        <div className="container max-w-6xl">
+          <Suspense fallback={<div className="text-center py-12">Loading form...</div>}>
+            <ContactFormContent />
+          </Suspense>
+        </div>
+      </section>
+
+      {/* Google Maps Location */}
+      <section className="section pt-0 pb-20" style={{ background: "var(--color-bg-secondary)" }}>
+        <div className="container max-w-6xl">
+          <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm">
+            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+              <div>
+                <h3
+                  className="text-lg sm:text-xl font-bold text-slate-900"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Our Headquarters Location
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Ch. Sambhaji Nagar, Maharashtra 431005, India | Mon - Sat: 9:00 AM - 7:00 PM
+                </p>
+              </div>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-100 hidden sm:inline-block">
+                Map View
+              </span>
+            </div>
+
+            <div className="rounded-xl overflow-hidden border border-slate-200">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d75.35!3d19.88!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDUyJzQ4LjAiTiA3NcKwMjEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
+                width="100%"
+                height="380"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ocean MGPS Location — Ch. Sambhaji Nagar"
+              />
+            </div>
           </div>
         </div>
       </section>

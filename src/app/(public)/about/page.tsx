@@ -1,67 +1,107 @@
 // ============================================
-// About Page — Ocean MGPS
+// About Page — Ocean MGPS (Ch. Sambhaji Nagar)
+// Clean White Theme & Ultra Responsive Layout
 // ============================================
 
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Award, Shield, Users, Clock, MapPin, CheckCircle2 } from "lucide-react";
-import type { Metadata } from "next";
+import {
+  Award,
+  Shield,
+  Users,
+  Clock,
+  MapPin,
+  Phone,
+  Mail,
+  ArrowRight,
+  Building2,
+  Wrench,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 
 const values = [
   {
     icon: Shield,
     title: "Quality First",
-    description: "Every product we supply meets Indian Standards specifications and hospital-grade safety requirements.",
+    description: "Every product and pipeline fitting we install meets strict Indian Standards (IS 7484) and hospital-grade safety requirements.",
   },
   {
     icon: Users,
     title: "Customer Focus",
-    description: "We build lasting relationships with our clients by providing exceptional service and support.",
+    description: "We build long-term relationships with hospital administrators by providing tailored design, installation, and after-sales support.",
   },
   {
     icon: Clock,
-    title: "Reliability",
-    description: "Our installations are built to last with 24/7 support and prompt maintenance services.",
+    title: "24/7 Reliability",
+    description: "Our systems are engineered for zero downtime with round-the-clock emergency support and preventive maintenance services.",
   },
   {
     icon: Award,
-    title: "Expertise",
-    description: "With over a decade of experience, we bring unmatched technical knowledge to every project.",
+    title: "Technical Expertise",
+    description: "With over a decade of hands-on experience, our engineers deliver flawless pipeline routing and certified manifold setups.",
   },
 ];
 
 const milestones = [
-  "Established in Aurangabad, Maharashtra",
-  "First major hospital MGPS installation",
-  "Expanded to modular OT solutions",
-  "150+ successful project completions",
-  "Pan-India service coverage",
-  "Trusted by 50+ healthcare facilities",
+  {
+    title: "Established Headquarters",
+    description: "Founded in Ch. Sambhaji Nagar, Maharashtra for specialized hospital gas pipeline engineering.",
+  },
+  {
+    title: "100+ Bed Hospital MGPS",
+    description: "Executed first major turnkey MGPS installation for multi-specialty care.",
+  },
+  {
+    title: "Modular OT Expansion",
+    description: "Expanded engineering scope to NABH-compliant modular operation theater setups.",
+  },
+  {
+    title: "150+ Projects Completed",
+    description: "Successfully commissioned 150+ medical gas pipeline projects across India.",
+  },
+  {
+    title: "Pan-India Network",
+    description: "Established nationwide equipment supply and technical service coverage.",
+  },
+  {
+    title: "50+ Healthcare Clients",
+    description: "Trusted long-term technical partner for 50+ hospitals and healthcare institutes.",
+  },
+];
+
+const quickStats = [
+  { label: "Projects Completed", value: "150+" },
+  { label: "Happy Clients", value: "50+" },
+  { label: "Years Experience", value: "10+" },
+  { label: "Products Available", value: "200+" },
 ];
 
 export default function AboutPage() {
   return (
     <>
       {/* Hero Banner */}
-      <section className="section" style={{ background: "var(--color-bg-primary)" }}>
-        <div className="container">
+      <section className="section relative overflow-hidden" style={{ background: "var(--color-bg-primary)" }}>
+        <div className="container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center max-w-3xl mx-auto"
           >
             <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-semibold shadow-sm"
               style={{
                 background: "var(--color-primary-light)",
                 color: "var(--color-primary)",
+                border: "1px solid rgba(21, 101, 192, 0.15)",
               }}
             >
-              <MapPin size={14} /> Aurangabad, Maharashtra
+              <MapPin size={14} /> Ch. Sambhaji Nagar, Maharashtra, India
             </span>
             <h1
-              className="text-4xl md:text-5xl font-bold mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5"
               style={{
                 fontFamily: "var(--font-display)",
                 color: "var(--color-primary-dark)",
@@ -69,74 +109,128 @@ export default function AboutPage() {
             >
               About <span className="text-gradient">Ocean MGPS</span>
             </h1>
-            <p className="text-lg leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="text-base sm:text-lg leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
               We are a highly specialized stockist, supplier, and installer of Medical Gas Pipeline
               Systems and hospital equipment, dedicated to serving healthcare facilities across India
-              with quality products and expert installation services.
+              with certified quality products and expert engineering services.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Our Story */}
+      {/* Quick Stats Grid */}
+      <section className="py-8 bg-white border-y border-[var(--color-border-light)]">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+            {quickStats.map((stat, i) => (
+              <div key={i} className="p-3 sm:p-4">
+                <span
+                  className="block text-2xl sm:text-3xl font-extrabold"
+                  style={{ color: "var(--color-primary)", fontFamily: "var(--font-display)" }}
+                >
+                  {stat.value}
+                </span>
+                <span className="text-xs sm:text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story & Milestones Grid */}
       <section className="section" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Story (5 Columns) */}
             <motion.div
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="lg:col-span-5"
             >
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-md bg-blue-100/80 text-[var(--color-primary)] mb-3">
+                <Sparkles size={14} /> Our Background
+              </div>
               <h2
-                className="text-3xl font-bold mb-5"
+                className="text-2xl sm:text-3xl font-bold mb-5"
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--color-primary-dark)",
                 }}
               >
-                Our Story
+                Our Journey & Engineering Mission
               </h2>
-              <div className="space-y-4" style={{ color: "var(--color-text-secondary)" }}>
-                <p className="leading-relaxed">
-                  Ocean MGPS Sales & Multi Services was founded with a singular mission — to provide
-                  healthcare facilities across India with reliable, high-quality Medical Gas Pipeline
-                  Systems and equipment. Based in Aurangabad, Maharashtra, we have grown into a trusted
-                  name in the healthcare infrastructure industry.
+              <div className="space-y-4 text-sm sm:text-base leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+                <p>
+                  Ocean MGPS Sales & Multi Services was founded with a clear mission — to provide
+                  hospitals and clinics across India with safe, certified, and uninterrupted Medical Gas Pipeline
+                  Systems. Based in Ch. Sambhaji Nagar, Maharashtra, we have grown into a trusted technical partner for medical infrastructure.
                 </p>
-                <p className="leading-relaxed">
-                  Under the leadership of <strong style={{ color: "var(--color-text-primary)" }}>Ganesh Khandale</strong>,
-                  our team brings over a decade of hands-on experience in MGPS installation, hospital
-                  equipment supply, and modular operation theater setup. We take pride in our &quot;Made in India&quot;
-                  products and our commitment to quality.
+                <p>
+                  Under the experienced leadership of <strong style={{ color: "var(--color-text-primary)" }}>Ganesh Khandale</strong>,
+                  our specialized team brings over a decade of hands-on expertise in central gas manifold setups, copper piping networks, modular OTs, and alarm control panels.
                 </p>
-                <p className="leading-relaxed">
-                  From supplying a single copper fitting to commissioning complete hospital gas pipeline
-                  networks, we handle projects of every scale with the same dedication to excellence.
+                <p>
+                  From supplying a single copper fitting or BPC flow meter to executing full turnkey hospital gas pipeline installations, we uphold strict standards of safety and quality at every step.
                 </p>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-[var(--color-border-light)] flex flex-wrap gap-3">
+                <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-primary)] bg-white px-3.5 py-2 rounded-xl border border-[var(--color-border-light)] shadow-xs">
+                  <CheckCircle2 size={16} /> IS 7484 Compliant
+                </div>
+                <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-primary)] bg-white px-3.5 py-2 rounded-xl border border-[var(--color-border-light)] shadow-xs">
+                  <CheckCircle2 size={16} /> 24/7 Support Network
+                </div>
               </div>
             </motion.div>
 
+            {/* Key Company Milestones (Clean Grid) */}
             <motion.div
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-[var(--shadow-sm)]"
             >
-              <div className="space-y-3">
-                {milestones.map((milestone, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-start gap-3 p-4 rounded-lg bg-white"
-                    style={{ border: "1px solid var(--color-border-light)" }}
+              <div className="flex items-center gap-3 pb-4 mb-6 border-b border-[var(--color-border-light)]">
+                <div className="w-10 h-10 rounded-xl bg-[var(--color-primary-light)] flex items-center justify-center flex-shrink-0">
+                  <Building2 size={22} style={{ color: "var(--color-primary)" }} />
+                </div>
+                <div>
+                  <h3
+                    className="text-lg sm:text-xl font-bold"
+                    style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
                   >
-                    <CheckCircle2 size={20} className="flex-shrink-0 mt-0.5" style={{ color: "var(--color-primary)" }} />
-                    <span className="text-sm font-medium" style={{ color: "var(--color-text-primary)" }}>
-                      {milestone}
-                    </span>
-                  </motion.div>
+                    Key Company Milestones
+                  </h3>
+                  <p className="text-xs text-[var(--color-text-secondary)]">Over a decade of engineering excellence</p>
+                </div>
+              </div>
+
+              {/* Clean 2-Column Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                {milestones.map((item, i) => (
+                  <div
+                    key={i}
+                    className="p-4 rounded-xl bg-[var(--color-bg-tertiary)] border border-[var(--color-border-light)] hover:border-[var(--color-primary)] transition-colors flex items-start gap-3"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-[var(--color-primary-light)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle2 size={16} style={{ color: "var(--color-primary)" }} />
+                    </div>
+                    <div>
+                      <h4
+                        className="text-xs font-bold uppercase tracking-wider mb-1"
+                        style={{ color: "var(--color-primary-dark)", fontFamily: "var(--font-display)" }}
+                      >
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
                 ))}
               </div>
             </motion.div>
@@ -144,15 +238,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Values */}
+      {/* Our Core Values */}
       <section className="section" style={{ background: "var(--color-bg-primary)" }}>
         <div className="container">
           <div className="section-heading">
-            <h2>Our Values</h2>
-            <p>The principles that guide everything we do</p>
+            <h2>Our Core Values</h2>
+            <p>The principles that guide our engineering and client service</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {values.map((value, i) => (
               <motion.div
                 key={i}
@@ -160,20 +254,24 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center p-6 rounded-xl"
+                whileHover={{ y: -4 }}
+                className="flex flex-col items-center text-center p-6 bg-white rounded-2xl transition-all duration-300 group"
                 style={{
-                  background: "var(--color-bg-primary)",
                   border: "1px solid var(--color-border)",
+                  boxShadow: "var(--shadow-sm)",
                 }}
               >
                 <div
-                  className="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-4"
-                  style={{ background: "var(--color-primary-light)" }}
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                  style={{
+                    background: "var(--color-primary-light)",
+                    boxShadow: "0 4px 14px rgba(21, 101, 192, 0.15)",
+                  }}
                 >
-                  <value.icon size={24} style={{ color: "var(--color-primary)" }} />
+                  <value.icon size={26} style={{ color: "var(--color-primary)" }} />
                 </div>
                 <h3
-                  className="text-base font-bold mb-2"
+                  className="text-base sm:text-lg font-bold mb-2 transition-colors group-hover:text-[var(--color-primary)]"
                   style={{
                     fontFamily: "var(--font-display)",
                     color: "var(--color-primary-dark)",
@@ -181,7 +279,7 @@ export default function AboutPage() {
                 >
                   {value.title}
                 </h3>
-                <p className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
+                <p className="text-xs sm:text-sm leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
                   {value.description}
                 </p>
               </motion.div>
@@ -190,31 +288,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder */}
+      {/* Founder & Management */}
       <section className="section" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center p-6 sm:p-8 rounded-2xl bg-white"
+            className="text-center p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-white relative overflow-hidden"
             style={{
               border: "1px solid var(--color-border)",
-              boxShadow: "var(--shadow-sm)",
+              boxShadow: "var(--shadow-md)",
             }}
           >
+            {/* Top Accent Bar */}
             <div
-              className="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4"
-              style={{
-                background: "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
-              }}
-            >
-              <span className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-display)" }}>
+              className="h-2 w-full absolute top-0 left-0 right-0"
+              style={{ background: "linear-gradient(90deg, var(--color-primary), var(--color-accent))" }}
+            />
+
+            <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-4 shadow-lg bg-gradient-to-br from-[#0D47A1] to-[#0288D1] text-white">
+              <span className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>
                 GK
               </span>
             </div>
+
             <h3
-              className="text-xl font-bold"
+              className="text-xl sm:text-2xl font-bold mb-1"
               style={{
                 fontFamily: "var(--font-display)",
                 color: "var(--color-primary-dark)",
@@ -222,14 +322,53 @@ export default function AboutPage() {
             >
               Ganesh Khandale
             </h3>
-            <p className="text-sm font-medium mb-3" style={{ color: "var(--color-primary)" }}>
+            <p className="text-sm font-bold mb-4" style={{ color: "var(--color-primary)" }}>
               Founder & Managing Director
             </p>
-            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+            <p className="text-xs sm:text-sm leading-relaxed mb-6 max-w-xl mx-auto" style={{ color: "var(--color-text-secondary)" }}>
               With over a decade of expertise in Medical Gas Pipeline Systems, Ganesh leads Ocean MGPS
-              with a vision to make quality healthcare infrastructure accessible to every hospital across India.
+              with a commitment to quality, safety compliance, and making reliable healthcare gas infrastructure accessible to every hospital across India.
             </p>
+
+            {/* Direct Contact Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-[var(--color-border-light)]">
+              <a
+                href="tel:8421526195"
+                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl bg-[var(--color-primary-light)] text-[var(--color-primary)] hover:bg-blue-100 transition-colors"
+              >
+                <Phone size={14} /> +91 8421526195 / 8007515182
+              </a>
+              <a
+                href="mailto:oceanmgps@gmail.com"
+                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl bg-[var(--color-primary-light)] text-[var(--color-primary)] hover:bg-blue-100 transition-colors"
+              >
+                <Mail size={14} /> oceanmgps@gmail.com
+              </a>
+            </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="section" style={{ background: "var(--color-bg-primary)" }}>
+        <div className="container text-center max-w-2xl mx-auto">
+          <h2
+            className="text-2xl sm:text-3xl font-bold mb-4"
+            style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
+          >
+            Partner with Ocean MGPS Today
+          </h2>
+          <p className="text-sm sm:text-base mb-8" style={{ color: "var(--color-text-secondary)" }}>
+            Need an MGPS installation estimate or equipment supply catalog? Reach out to our engineering team in Ch. Sambhaji Nagar.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href="/services" className="btn btn-outline btn-lg w-full sm:w-auto">
+              <Wrench size={16} /> Explore Services
+            </Link>
+            <Link href="/contact" className="btn btn-primary btn-lg w-full sm:w-auto">
+              Contact Us <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
     </>
