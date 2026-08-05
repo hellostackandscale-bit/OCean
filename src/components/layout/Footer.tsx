@@ -12,6 +12,7 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "MGPS Systems", href: "/mgps" },
+  { label: "LPG Gas Piping", href: "/lpg" },
   { label: "Our Products", href: "/products" },
   { label: "Our Projects", href: "/projects" },
   { label: "Contact Us", href: "/contact" },
@@ -19,7 +20,8 @@ const quickLinks = [
 
 const serviceLinks = [
   { label: "MGPS Installation", href: "/services" },
-  { label: "Equipment Sales", href: "/services" },
+  { label: "LPG Copper Gas Piping", href: "/lpg" },
+  { label: "Equipment & ICU Devices", href: "/services" },
   { label: "Modular OT Setup", href: "/services" },
   { label: "Repair & Maintenance", href: "/services" },
   { label: "Consultation", href: "/services" },

@@ -14,17 +14,23 @@ interface FirestoreState<T> {
   refetch: () => Promise<void>;
 }
 
+// In-memory cache for instant loads
+const firestoreCache: Record<string, any[]> = {};
+
 export function useFirestore<T>(
   collectionName: string,
   mode: "all" | "published" | "featured" = "all"
 ): FirestoreState<T> {
-  const [data, setData] = useState<T[]>([]);
-  const [loading, setLoading] = useState(true);
+  const cacheKey = `${collectionName}_${mode}`;
+  const [data, setData] = useState<T[]>(() => firestoreCache[cacheKey] || []);
+  const [loading, setLoading] = useState(() => !firestoreCache[cacheKey]);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     try {
-      setLoading(true);
+      if (!firestoreCache[cacheKey]) {
+        setLoading(true);
+      }
       setError(null);
       let result: T[];
 
@@ -39,13 +45,14 @@ export function useFirestore<T>(
           result = await getDocuments<T>(collectionName);
       }
 
+      firestoreCache[cacheKey] = result;
       setData(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to fetch data");
     } finally {
       setLoading(false);
     }
-  }, [collectionName, mode]);
+  }, [collectionName, mode, cacheKey]);
 
   useEffect(() => {
     fetchData();

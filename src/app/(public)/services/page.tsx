@@ -20,9 +20,10 @@ import {
   X,
   Filter,
   Sparkles,
+  Flame,
 } from "lucide-react";
 
-const categories = ["All", "Installation", "Equipment", "Modular OT", "Maintenance", "Turnkey", "Consultation"];
+const categories = ["All", "Installation", "LPG Piping", "Equipment", "Modular OT", "Maintenance", "Turnkey", "Consultation"];
 
 const services = [
   {
@@ -47,25 +48,48 @@ const services = [
     leadTime: "10-30 Days",
   },
   {
+    id: "lpg-gas-piping",
+    category: "LPG Piping",
+    icon: Flame,
+    title: "LPG Copper Gas Pipeline Systems",
+    tagline: "Centralized LPG copper gas piping for homes, hotels, restaurants & apartments",
+    description:
+      "Safe, leakproof LPG copper gas pipeline installation for domestic kitchens, villas, commercial hotel kitchens, restaurants, and reticulated gas supply for residential societies.",
+    fullDetails:
+      "We design and install domestic and commercial LPG copper gas pipeline systems. We relocate heavy LPG cylinders outside the kitchen into safe external manifold yards, running heavy-wall copper pipes (BS EN 1057 / ASTM B280) with automatic gas leak detectors, solenoid cutoff valves, dual-stage pressure regulators, and individual utility gas meters.",
+    features: [
+      "Domestic home kitchen LPG copper piping with gas leak detector",
+      "Commercial hotel & restaurant multi-cylinder LPG manifold banks",
+      "Automatic electro-magnetic gas cutoff solenoid valve setup",
+      "First stage (1.5 Bar) & second stage (37 mbar) pressure regulators",
+      "Reticulated LPG system for multi-story apartment buildings",
+      "PESO & IS 6044 safety compliant installation & pressure hold testing",
+    ],
+    badge: "IS 6044 / PESO Certified",
+    leadTime: "3-10 Days",
+  },
+  {
     id: "equipment-sales",
     category: "Equipment",
     icon: ShoppingBag,
-    title: "Equipment Sales & Distribution",
-    tagline: "Certified stockist & supplier of hospital gas supply hardware",
+    title: "Equipment Sales & ICU Devices",
+    tagline: "Certified stockist & supplier of hospital gas hardware, ICU & diagnostic equipment",
     description:
-      "Complete range of hospital gas supply equipment sourced directly from certified manufacturers. Stocked in Ch. Sambhaji Nagar for fast delivery.",
+      "Complete range of hospital gas supply hardware, ICU monitors, ECG machines, syringe pumps, ventilators, baby care equipment, and medical gas accessories. Sourced directly from certified manufacturers & stocked in Ch. Sambhaji Nagar.",
     fullDetails:
-      "We stock and supply certified medical gas equipment for new hospital builds and pipeline expansions. Products include BS/DIN gas outlets, BPC flow meters with humidifier bottles, vacuum suction regulators, digital master alarms, automatic changeover manifold panels, and medical copper fittings.",
+      "We stock and supply certified medical gas equipment, ICU patient monitors, ECG machines, syringe pumps, ventilators, and infant radiant warmers for new hospital builds and ICU expansions. Products include 3/12 Channel ECG machines, multi-para patient monitors, volumetric infusion & syringe pumps, advanced ICU ventilators, infant warmers & incubators, BS/DIN gas outlets, BPC flow meters, vacuum suction regulators, and digital alarm panels.",
     features: [
+      "3-Channel & 12-Channel ECG Machines with Interpretation",
+      "Multi-Para Patient Monitors (5-Para / 7-Para ICU & OT)",
+      "Volumetric Infusion Pumps & High-Precision Syringe Pumps",
+      "Advanced ICU & Transport Ventilators",
+      "Infant Radiant Warmers, Baby Incubators & Phototherapy",
       "Manual & Automatic Gas Manifold Control Panels",
       "BS 5682 / DIN / AFNOR Medical Gas Outlets",
-      "BPC Oxygen Flow Meters & Humidifier Jars",
-      "Vacuum Suction Regulators & Collection Trolleys",
-      "Seamless Copper Tubing & Silver Brazing Rods",
-      "Bed Head Panel Units & OT Gas Pendants",
+      "BPC Oxygen Flow Meters & Vacuum Suction Regulators",
     ],
-    badge: "Certified Hardware",
-    leadTime: "Immediate Stock",
+    badge: "Certified Hardware & ICU Devices",
+    leadTime: "Immediate Stock / Fast Dispatch",
   },
   {
     id: "modular-ot",
@@ -92,22 +116,24 @@ const services = [
     id: "repair-maintenance",
     category: "Maintenance",
     icon: Stethoscope,
-    title: "Repair & Maintenance (AMC)",
-    tagline: "24/7 emergency repair & annual maintenance for 100% pipeline uptime",
+    title: "Repair, Servicing & Maintenance (AMC)",
+    tagline: "24/7 emergency repair & annual maintenance for MGPS pipelines & ICU equipment",
     description:
-      "Comprehensive preventive maintenance, ultrasonic leak detection, and 24/7 emergency repair services for existing hospital gas supply systems.",
+      "Comprehensive preventive maintenance, calibration, ultrasonic leak detection, and 24/7 emergency repair services for hospital gas supply networks and ICU devices.",
     fullDetails:
-      "Round-the-clock emergency support and customized Annual Maintenance Contracts (AMC) for hospital gas pipeline infrastructure. We conduct periodic pressure calibration, manifold servicing, leak rectification, and outlet seal replacements to ensure zero disruption to ICUs and OTs.",
+      "Round-the-clock emergency support and customized Annual Maintenance Contracts (AMC) for hospital gas pipelines, ICU monitors, ECG machines, syringe pumps, ventilators, and infant radiant warmers. We conduct periodic pressure calibration, manifold servicing, leak rectification, sensor replacements, and medical device calibration to ensure 100% uptime for ICUs and OTs.",
     features: [
-      "24/7 emergency breakdown repair helpline",
+      "24/7 Emergency breakdown repair helpline for MGPS & ICU equipment",
+      "Calibration & servicing of 3/12 Channel ECG machines & Patient Monitors",
+      "Infusion & Syringe pump flow rate calibration & mechanical repair",
+      "ICU ventilator preventive maintenance & oxygen sensor replacement",
+      "Infant radiant warmer & baby incubator temperature calibration",
       "Ultrasonic gas leak detection & pipe repair",
-      "Manifold pressure regulator calibration",
-      "Outlet seal & component replacement",
-      "Preventive quarterly maintenance visits",
-      "Comprehensive AMC & Non-AMC packages",
+      "Manifold pressure regulator calibration & outlet servicing",
+      "Comprehensive AMC & Non-AMC packages for complete hospital peace of mind",
     ],
-    badge: "24/7 Emergency",
-    leadTime: "Instant Helpline",
+    badge: "24/7 Emergency & ICU AMC",
+    leadTime: "Instant Helpline / On-Site Dispatch",
   },
   {
     id: "turnkey-solutions",
@@ -216,8 +242,8 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Services List — Open Flat Layout */}
-          <div className="flex flex-col mb-10 sm:mb-12">
+          {/* Services List — Frameless / Borderless Flat Layout */}
+          <div className="flex flex-col gap-14 sm:gap-20 md:gap-24">
             {filteredServices.map((service, i) => (
               <motion.div
                 key={service.id}
@@ -225,86 +251,86 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06, duration: 0.4 }}
-                className="group"
+                className="pt-10 sm:pt-14 first:pt-0 border-t first:border-t-0 border-slate-200/70"
               >
-                {/* Divider between items */}
-                {i > 0 && <div className="border-t border-slate-200/70 my-2" />}
-
-                <div className="py-8 sm:py-10 md:py-12 flex flex-col lg:flex-row gap-8 lg:gap-14">
-                  {/* Left Column: Title, Description & Action Buttons */}
-                  <div className="lg:w-7/12 flex flex-col justify-between space-y-5">
+                {/* Top Service Header Row — Frameless */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-6">
+                  <div className="flex items-start sm:items-center gap-3.5 sm:gap-4">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0 mt-1 sm:mt-0">
+                      <service.icon size={22} />
+                    </div>
                     <div>
-                      {/* Header Row */}
-                      <div className="flex items-start justify-between gap-3 mb-4">
-                        <div className="flex items-center gap-3.5">
-                          <div className="w-11 h-11 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
-                            <service.icon size={20} />
-                          </div>
-                          <div>
-                            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-primary)] opacity-70 inline-block mb-0.5">
-                              {service.category}
-                            </span>
-                            <h2
-                              className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-slate-900"
-                              style={{ fontFamily: "var(--font-display)" }}
-                            >
-                              {service.title}
-                            </h2>
-                          </div>
-                        </div>
-
-                        <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-blue-50/80 text-[var(--color-primary)] flex-shrink-0 mt-1">
-                          {service.badge}
+                      <div className="block mb-1">
+                        <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[var(--color-primary)] opacity-80">
+                          SERVICE CATEGORY #{String(i + 1).padStart(2, "0")} — {service.category}
                         </span>
                       </div>
+                      <h2
+                        className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight text-slate-900"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {service.title}
+                      </h2>
+                    </div>
+                  </div>
 
-                      {/* Tagline & Description */}
-                      <p className="text-xs sm:text-sm font-medium text-slate-400 mb-2 leading-relaxed">
+                  {/* Badges Row — Frameless */}
+                  <div className="flex flex-wrap items-center gap-2 pt-1 sm:pt-0">
+                    <span className="text-[10px] sm:text-[11px] font-bold px-3 py-1 rounded-full bg-blue-50 text-[var(--color-primary)] whitespace-nowrap">
+                      {service.badge}
+                    </span>
+                    <span className="text-[10px] sm:text-[11px] font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-600 whitespace-nowrap">
+                      {service.leadTime}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Main Body Grid: Description & Deliverables — Frameless */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+                  {/* Left Column: Tagline, Description & Action Buttons */}
+                  <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                    <div>
+                      <p className="text-xs sm:text-sm font-semibold text-blue-600 mb-3 leading-relaxed">
                         {service.tagline}
                       </p>
-                      <p className="text-sm leading-relaxed text-slate-600 max-w-xl">
+                      <p className="text-sm sm:text-base leading-relaxed text-slate-600 font-medium">
                         {service.description}
                       </p>
                     </div>
 
                     {/* Action Buttons Row */}
-                    <div className="flex flex-col sm:flex-row items-start gap-3 pt-2">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
                       <Link
                         href={`/contact?service=${encodeURIComponent(service.title)}`}
-                        className="btn btn-primary btn-lg w-full sm:w-auto text-xs sm:text-sm justify-center rounded-xl py-3 px-6 shadow-xs hover:shadow-md transition-all font-bold"
+                        className="btn btn-primary btn-lg text-xs sm:text-sm justify-center rounded-lg py-3.5 px-6 shadow-xs hover:shadow-md transition-all font-bold group/btn"
                       >
                         Enquire for {service.title.split(" ")[0]}
-                        <ArrowRight size={16} />
+                        <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
                       </Link>
 
                       <button
                         type="button"
                         onClick={() => setSelectedService(service)}
-                        className="btn btn-outline btn-lg w-full sm:w-auto text-xs sm:text-sm justify-center rounded-xl py-3 px-6 transition-all font-bold cursor-pointer"
+                        className="btn btn-outline btn-lg text-xs sm:text-sm justify-center rounded-lg py-3.5 px-6 transition-all font-bold cursor-pointer hover:bg-slate-50"
                       >
-                        <Sparkles size={14} /> Full Scope & Specs
+                        <Sparkles size={15} /> Full Scope & Specs
                       </button>
                     </div>
                   </div>
 
-                  {/* Right Column: Key Deliverables */}
-                  <div className="lg:w-5/12 flex flex-col justify-start">
-                    <div className="flex items-center justify-between mb-3">
-                      <h4
-                        className="text-[11px] font-bold uppercase tracking-wider text-slate-400"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        Key Deliverables
-                      </h4>
-                      <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-500">
-                        {service.leadTime}
-                      </span>
-                    </div>
+                  {/* Right Column: Key Deliverables — Frameless Unboxed List */}
+                  <div className="lg:col-span-5 w-full">
+                    <h4
+                      className="text-xs font-extrabold uppercase tracking-wider text-slate-700 pb-3 mb-3 border-b border-slate-200/60"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      KEY DELIVERABLES INCLUDED
+                    </h4>
 
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-3">
                       {service.features.map((feature, j) => (
-                        <li key={j} className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-slate-600">
-                          <CheckCircle2 size={15} className="mt-0.5 flex-shrink-0 text-[var(--color-primary)]" />
+                        <li key={j} className="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-slate-700">
+                          <CheckCircle2 size={16} className="mt-0.5 flex-shrink-0 text-[var(--color-primary)]" />
                           <span className="leading-snug">{feature}</span>
                         </li>
                       ))}

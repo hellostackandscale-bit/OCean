@@ -30,6 +30,13 @@ function getProductDetails(product: ProductItem) {
     `High-precision hospital-grade ${product.name}. Designed and manufactured in full compliance with Indian Standards (IS 7484) for safe, reliable medical gas pipeline operation in ICUs, OTs, and general wards.`;
 
   const categorySpecs: Record<string, { label: string; value: string }[]> = {
+    "ICU & Diagnostic Equipment": [
+      { label: "Device Types", value: "3/12 Channel ECG, Multi-para Monitor, Infusion/Syringe Pump, ICU Ventilator, Baby Warmer" },
+      { label: "Display / Interface", value: "High-Resolution Color TFT Touchscreen / Digital LED Display" },
+      { label: "Power Supply", value: "220V AC 50Hz with Integrated Lithium Battery Backup" },
+      { label: "Monitoring Parameters", value: "ECG, SpO2, NIBP, Respiration, Dual Temp, IBP, EtCO2 (Optional)" },
+      { label: "Compliance & Safety", value: "ISO 13485 / CE Certified Medical Grade Standards" },
+    ],
     "Flow Meters & Regulators": [
       { label: "Flow Rate", value: "0 - 15 LPM / 0 - 70 LPM" },
       { label: "Inlet Pressure", value: "4.2 Bar (60 PSI)" },

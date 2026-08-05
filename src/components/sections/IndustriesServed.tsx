@@ -16,6 +16,8 @@ import {
   Building2,
   ArrowRight,
   CheckCircle2,
+  Home,
+  Utensils,
 } from "lucide-react";
 
 const industries = [
@@ -25,6 +27,20 @@ const industries = [
     description: "Centralized liquid oxygen (LMO) tank yards, automatic manifold plants, and floor-wise piping for 100+ bed facilities.",
     badge: "100+ Beds Setup",
     tags: ["LMO Tank Yard", "Automatic Manifold", "Bed Head Panels"],
+  },
+  {
+    icon: Home,
+    name: "Residences, Villas & Apartments",
+    description: "Domestic LPG copper gas piping, external cylinder placement, gas leak sensors, and auto cutoff solenoid valves.",
+    badge: "Domestic LPG",
+    tags: ["External Cylinders", "Leak Cutoff Valve", "Clean Kitchen"],
+  },
+  {
+    icon: Utensils,
+    name: "Hotels, Restaurants & Canteens",
+    description: "High-flow commercial LPG cylinder manifold banks (4x4 to 10x10) with automatic changeover for commercial kitchens.",
+    badge: "Commercial LPG",
+    tags: ["High-Flow Manifold", "Auto Changeover", "IS 6044 Safety"],
   },
   {
     icon: Stethoscope,
@@ -46,20 +62,6 @@ const industries = [
     description: "Uninterrupted high-pressure oxygen, medical air (4 bar/7 bar), and vacuum lines with zero downtime tolerance.",
     badge: "24/7 Redundancy",
     tags: ["Dual Manifolds", "Area Gas Alarms", "Continuous Vacuum"],
-  },
-  {
-    icon: FlaskConical,
-    name: "Diagnostic & Research Labs",
-    description: "High-purity gas delivery systems (Nitrogen, Helium, Carbon Dioxide) with precise pressure regulation.",
-    badge: "High-Purity Lines",
-    tags: ["High-Purity Copper", "Needle Regulators", "Leak Sensors"],
-  },
-  {
-    icon: Microscope,
-    name: "Medical Colleges & Institutes",
-    description: "Turnkey MGPS infrastructure for teaching hospitals, central gas plant rooms, and campus-wide underground piping.",
-    badge: "Campus Network",
-    tags: ["Central Plant Room", "Campus Network", "AMC Support"],
   },
 ];
 

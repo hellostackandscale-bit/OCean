@@ -9,6 +9,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "MGPS", href: "/mgps" },
+  { label: "LPG Piping", href: "/lpg" },
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
   { label: "Projects", href: "/projects" },
@@ -20,15 +21,16 @@ export const NAV_LINKS: NavLink[] = [
 // Product categories
 export const PRODUCT_CATEGORIES = [
   "All",
-  "Copper Fittings & Pipes",
+  "ICU & Diagnostic Equipment",
   "Flow Meters & Regulators",
   "Medical Gas Outlets",
   "Manifold Systems",
+  "LPG Gas Copper Systems",
+  "Copper Fittings & Pipes",
   "Valves & Safety",
   "Alarm Systems",
   "OT Equipment",
   "Bed Head Panels",
-  "Pressure Gauges",
   "Vacuum Systems",
 ] as const;
 
@@ -36,6 +38,7 @@ export const PRODUCT_CATEGORIES = [
 export const PROJECT_CATEGORIES = [
   "All",
   "MGPS Installation",
+  "LPG Copper Pipeline",
   "Modular OT Setup",
   "Pipeline Work",
   "Hospital Setup",
@@ -45,6 +48,7 @@ export const PROJECT_CATEGORIES = [
 // Service interest options for enquiry form
 export const SERVICE_INTERESTS = [
   "MGPS Installation",
+  "LPG Copper Gas Pipeline",
   "Equipment Purchase",
   "Modular OT Setup",
   "Repair & Maintenance",
@@ -67,7 +71,7 @@ export const DEFAULT_SETTINGS = {
   heroImages: [],
   stats: [
     { label: "Projects Completed", value: 150, suffix: "+" },
-    { label: "Happy Clients", value: 50, suffix: "+" },
+    { label: "Happy Clients", value: 145, suffix: "+" },
     { label: "Years Experience", value: 10, suffix: "+" },
     { label: "Products Available", value: 200, suffix: "+" },
   ],

@@ -16,6 +16,8 @@ import {
   ArrowRight,
   MapPin,
   CheckCircle2,
+  Home,
+  Utensils,
 } from "lucide-react";
 
 const industries = [
@@ -26,6 +28,22 @@ const industries = [
     badge: "100+ Beds Turnkey",
     description: "Centralized liquid oxygen (LMO) tank yards, automatic manifold plants, and floor-wise piping for large healthcare facilities.",
     tags: ["LMO Tank Yard", "Automatic Manifold", "Bed Head Panels"],
+  },
+  {
+    id: "home-lpg",
+    icon: Home,
+    name: "Residences, Villas & Apartments",
+    badge: "Domestic LPG Safety",
+    description: "Domestic copper LPG gas piping, external cylinder placement, gas leak sensors, and auto cutoff solenoid valves.",
+    tags: ["External Cylinders", "Leak Cutoff Solenoid", "Clean Kitchen"],
+  },
+  {
+    id: "commercial-lpg",
+    icon: Utensils,
+    name: "Hotels, Restaurants & Canteens",
+    badge: "Commercial LPG Systems",
+    description: "High-flow commercial LPG cylinder manifold banks (4x4 to 10x10) with automatic changeover for commercial kitchens.",
+    tags: ["High-Flow Manifold", "Auto Changeover", "IS 6044 Safety"],
   },
   {
     id: "clinics",
@@ -71,7 +89,7 @@ const industries = [
 
 const industryStats = [
   { value: "150+", label: "Pipeline Projects" },
-  { value: "50+", label: "Hospitals Served" },
+  { value: "145+", label: "Hospitals Served" },
   { value: "100%", label: "IS 7484 Compliance" },
   { value: "24/7", label: "Emergency Support" },
 ];

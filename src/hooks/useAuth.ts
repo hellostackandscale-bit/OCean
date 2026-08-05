@@ -21,8 +21,19 @@ export function useAuth(): AuthState {
 
   useEffect(() => {
     try {
-      const unsubscribe = onAuthChange((user) => {
-        setUser(user);
+      // Check local admin session fallback
+      if (typeof window !== "undefined" && localStorage.getItem("ocean_admin_logged_in") === "true") {
+        setUser({
+          uid: "admin-local-session",
+          email: "admin@oceanmgps.com",
+          displayName: "Admin Administrator",
+        } as unknown as User);
+        setLoading(false);
+        return;
+      }
+
+      const unsubscribe = onAuthChange((firebaseUser) => {
+        setUser(firebaseUser);
         setLoading(false);
       });
       return () => unsubscribe();

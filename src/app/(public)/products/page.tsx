@@ -9,8 +9,19 @@ import { motion } from "framer-motion";
 import { Search, Package, Filter, Eye, Check, ArrowRight, X } from "lucide-react";
 import { PRODUCT_CATEGORIES } from "@/lib/constants";
 import ProductModal, { ProductItem } from "@/components/ui/ProductModal";
+import { useFirestore } from "@/hooks/useFirestore";
+import { Product } from "@/types";
 
 const staticProducts: ProductItem[] = [
+  { name: "3-Channel ECG Machine", category: "ICU & Diagnostic Equipment", image: "/images/products/gas-alarm-system.png" },
+  { name: "12-Channel ECG Machine with Interpretation", category: "ICU & Diagnostic Equipment", image: "/images/products/gas-alarm-system.png" },
+  { name: "Multi-Para Patient Monitor (5-Para / 7-Para)", category: "ICU & Diagnostic Equipment", image: "/images/products/gas-alarm-system.png" },
+  { name: "Volumetric Infusion Pump", category: "ICU & Diagnostic Equipment", image: "/images/products/vacuum-regulator.png" },
+  { name: "High-Precision Micro Syringe Pump", category: "ICU & Diagnostic Equipment", image: "/images/products/vacuum-regulator.png" },
+  { name: "Advanced ICU Ventilator", category: "ICU & Diagnostic Equipment", image: "/images/products/oxygen-flow-meter.png" },
+  { name: "Infant Radiant Warmer", category: "ICU & Diagnostic Equipment", image: "/images/products/bed-head-panel.png" },
+  { name: "Baby Incubator & Phototherapy Unit", category: "ICU & Diagnostic Equipment", image: "/images/products/bed-head-panel.png" },
+  { name: "Biphasic Defibrillator with AED", category: "ICU & Diagnostic Equipment", image: "/images/products/gas-alarm-system.png" },
   { name: "Oxygen BPC Flow Meter", category: "Flow Meters & Regulators", image: "/images/products/oxygen-flow-meter.png" },
   { name: "Oxygen Pressure Regulator", category: "Flow Meters & Regulators", image: "/images/products/oxygen-flow-meter.png" },
   { name: "Vacuum Regulator with Jar", category: "Vacuum Systems", image: "/images/products/vacuum-regulator.png" },
@@ -32,7 +43,6 @@ const staticProducts: ProductItem[] = [
   { name: "Vacuum Suction Jar", category: "Vacuum Systems", image: "/images/products/vacuum-regulator.png" },
   { name: "Vacuum Suction Trolley", category: "Vacuum Systems", image: "/images/products/vacuum-regulator.png" },
   { name: "Medical Air Compressor", category: "Vacuum Systems", image: "/images/products/manifold-system.png" },
-  { name: "Pipeline Pressure Gauge", category: "Pressure Gauges", image: "/images/products/pressure-gauge.png" },
   { name: "Bed Head Panel Unit", category: "Bed Head Panels", image: "/images/products/bed-head-panel.png" },
   { name: "Modular Operation Theater", category: "OT Equipment", image: "/images/products/modular-ot.png" },
   { name: "OT Surgical Light", category: "OT Equipment", image: "/images/products/modular-ot.png" },
@@ -40,11 +50,22 @@ const staticProducts: ProductItem[] = [
 ];
 
 export default function ProductsPage() {
+  const { data: dbProducts } = useFirestore<Product>("products");
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
 
-  const filteredProducts = staticProducts.filter((product) => {
+  // Map live firestore products to ProductItem shape
+  const liveProductItems: ProductItem[] = dbProducts.map((p) => ({
+    name: p.name,
+    category: p.category,
+    image: p.images && p.images.length > 0 ? p.images[0] : "",
+    specifications: p.specifications ? p.specifications.split("\n") : undefined,
+  }));
+
+  const allProductsList = liveProductItems.length > 0 ? [...liveProductItems, ...staticProducts] : staticProducts;
+
+  const filteredProducts = allProductsList.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = activeCategory === "All" || product.category === activeCategory;
     return matchesSearch && matchesCategory;
@@ -112,29 +133,31 @@ export default function ProductsPage() {
       {/* Filter + Grid Section */}
       <section className="section pt-4 pb-24 sm:pb-20" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container">
-          {/* Category Filter Scrollbar */}
-          <div className="flex overflow-x-auto pb-3 gap-2 mb-8 justify-start sm:justify-center items-center pt-2">
-            <Filter size={18} className="flex-shrink-0" style={{ color: "var(--color-text-muted)" }} />
-            {PRODUCT_CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap flex-shrink-0"
-                style={{
-                  background: activeCategory === cat ? "var(--color-primary)" : "#FFFFFF",
-                  color: activeCategory === cat ? "#FFFFFF" : "var(--color-text-secondary)",
-                  border: `1px solid ${activeCategory === cat ? "var(--color-primary)" : "var(--color-border)"}`,
-                  boxShadow: activeCategory === cat ? "0 4px 12px rgba(21, 101, 192, 0.2)" : "none",
-                }}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Category Filter Pills — Unboxed */}
+          <div className="flex overflow-x-auto pb-4 gap-2 mb-8 justify-start sm:justify-center items-center pt-2 scrollbar-none">
+            <div className="flex items-center gap-2.5 flex-wrap justify-center">
+              {PRODUCT_CATEGORIES.map((cat) => {
+                const isSelected = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap"
+                    style={{
+                      background: isSelected ? "var(--color-primary)" : "rgba(226, 232, 240, 0.6)",
+                      color: isSelected ? "#FFFFFF" : "var(--color-text-secondary)",
+                    }}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Product Grid */}
+          {/* Product Grid — Open Flat Layout */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
               {filteredProducts.map((product, i) => (
                 <motion.div
                   key={product.name}
@@ -142,20 +165,19 @@ export default function ProductsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.03 }}
                   onClick={() => setSelectedProduct(product)}
-                  className="group bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-[var(--color-border)] flex flex-col justify-between"
+                  className="group cursor-pointer flex flex-col justify-between"
                 >
-                  <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                  <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      {/* Image Container */}
+                      {/* Standalone Image Container — Borderless */}
                       <div
-                        className="w-full aspect-square rounded-xl flex items-center justify-center mb-3 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] relative border border-[var(--color-border-light)] p-2"
-                        style={{ background: "var(--color-bg-tertiary)" }}
+                        className="w-full aspect-square rounded-2xl flex items-center justify-center mb-3 overflow-hidden transition-all duration-300 group-hover:scale-[1.02] relative p-3 bg-slate-100/70"
                       >
                         {product.image ? (
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-contain rounded-xl"
                           />
                         ) : (
                           <Package size={36} style={{ color: "var(--color-primary)" }} className="opacity-40" />
@@ -167,7 +189,7 @@ export default function ProductsPage() {
                         </div>
 
                         {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                        <div className="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
                           <span className="bg-white text-[var(--color-primary-dark)] text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
                             <Eye size={14} /> Quick View
                           </span>
@@ -176,29 +198,26 @@ export default function ProductsPage() {
 
                       {/* Category Pill */}
                       <span
-                        className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-[var(--color-primary)] inline-block mb-1.5"
+                        className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[var(--color-primary)] opacity-80 inline-block mb-1"
                       >
                         {product.category}
                       </span>
 
                       {/* Title */}
                       <h4
-                        className="text-xs sm:text-sm font-bold leading-snug mb-2 group-hover:text-[var(--color-primary)] transition-colors line-clamp-2"
+                        className="text-xs sm:text-sm font-bold leading-snug mb-2 group-hover:text-[var(--color-primary)] transition-colors line-clamp-2 text-slate-900"
                         style={{
                           fontFamily: "var(--font-display)",
-                          color: "var(--color-primary-dark)",
                         }}
                       >
                         {product.name}
                       </h4>
                     </div>
 
-                    {/* Action Footer */}
-                    <div className="pt-3 border-t border-[var(--color-border-light)] flex items-center justify-between text-xs font-semibold text-[var(--color-primary)]">
+                    {/* Action Link — Borderless */}
+                    <div className="pt-2 flex items-center gap-1.5 text-xs font-bold text-[var(--color-primary)] group-hover:gap-2.5 transition-all">
                       <span>View Specs</span>
-                      <div className="w-6 h-6 rounded-full bg-[var(--color-primary-light)] flex items-center justify-center transition-transform group-hover:translate-x-1">
-                        <ArrowRight size={12} style={{ color: "var(--color-primary)" }} />
-                      </div>
+                      <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
                 </motion.div>

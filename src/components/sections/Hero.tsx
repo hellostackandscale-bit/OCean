@@ -72,7 +72,7 @@ export default function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3.5 mb-8 sm:mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 mb-10 sm:mb-12 pb-2">
               <Link href="/services" className="btn btn-primary btn-lg w-full sm:w-auto">
                 Explore Services
                 <ArrowRight size={18} />
@@ -86,8 +86,8 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* Mini Trust Indicators — Clear vertical spacing */}
-            <div className="flex flex-wrap gap-5 sm:gap-6 pt-4 sm:pt-6 border-t border-white/10 lg:border-slate-200/60">
+            {/* Mini Trust Indicators — Guaranteed spacious separation */}
+            <div className="flex flex-wrap gap-5 sm:gap-6 mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/15 lg:border-slate-200/80">
               {[
                 { icon: Award, text: "ISO Certified" },
                 { icon: Shield, text: "Quality Assured" },

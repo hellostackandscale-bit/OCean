@@ -10,9 +10,10 @@ interface LogoProps {
   variant?: "light" | "dark";
   size?: "sm" | "md" | "lg";
   className?: string;
+  href?: string;
 }
 
-export default function Logo({ variant = "dark", size = "md", className = "" }: LogoProps) {
+export default function Logo({ variant = "dark", size = "md", className = "", href = "/" }: LogoProps) {
   const isLight = variant === "light";
 
   const sizeClasses = {
@@ -22,7 +23,7 @@ export default function Logo({ variant = "dark", size = "md", className = "" }: 
   }[size];
 
   return (
-    <Link href="/" className={`inline-flex items-center gap-3 no-underline group ${className}`}>
+    <Link href={href} className={`inline-flex items-center gap-3 no-underline group ${className}`}>
       {/* Emblem Icon */}
       <div className="relative flex-shrink-0">
         <img

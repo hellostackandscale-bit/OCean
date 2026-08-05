@@ -67,14 +67,14 @@ const milestones = [
     description: "Established nationwide equipment supply and technical service coverage.",
   },
   {
-    title: "50+ Healthcare Clients",
-    description: "Trusted long-term technical partner for 50+ hospitals and healthcare institutes.",
+    title: "145+ Healthcare Clients",
+    description: "Trusted long-term technical partner for 145+ hospitals and healthcare institutes.",
   },
 ];
 
 const quickStats = [
   { label: "Projects Completed", value: "150+" },
-  { label: "Happy Clients", value: "50+" },
+  { label: "Happy Clients", value: "145+" },
   { label: "Years Experience", value: "10+" },
   { label: "Products Available", value: "200+" },
 ];
@@ -187,46 +187,46 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            {/* Key Company Milestones (Clean Grid) */}
+            {/* Key Company Milestones — Unboxed Flat Layout */}
             <motion.div
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-[var(--color-border)] shadow-[var(--shadow-sm)]"
+              className="lg:col-span-7 flex flex-col justify-start"
             >
-              <div className="flex items-center gap-3 pb-4 mb-6 border-b border-[var(--color-border-light)]">
-                <div className="w-10 h-10 rounded-xl bg-[var(--color-primary-light)] flex items-center justify-center flex-shrink-0">
-                  <Building2 size={22} style={{ color: "var(--color-primary)" }} />
+              <div className="flex items-center gap-3 pb-4 mb-6 border-b border-slate-200/80">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
+                  <Building2 size={20} />
                 </div>
                 <div>
                   <h3
-                    className="text-lg sm:text-xl font-bold"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--color-primary-dark)" }}
+                    className="text-lg sm:text-xl font-bold text-slate-900"
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     Key Company Milestones
                   </h3>
-                  <p className="text-xs text-[var(--color-text-secondary)]">Over a decade of engineering excellence</p>
+                  <p className="text-xs text-slate-500">Over a decade of engineering excellence</p>
                 </div>
               </div>
 
-              {/* Clean 2-Column Cards Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+              {/* Clean Unboxed Milestones List */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {milestones.map((item, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl bg-[var(--color-bg-tertiary)] border border-[var(--color-border-light)] hover:border-[var(--color-primary)] transition-colors flex items-start gap-3"
+                    className="flex items-start gap-3 text-left"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-[var(--color-primary-light)] flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle2 size={16} style={{ color: "var(--color-primary)" }} />
+                    <div className="w-8 h-8 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle2 size={16} />
                     </div>
                     <div>
                       <h4
-                        className="text-xs font-bold uppercase tracking-wider mb-1"
-                        style={{ color: "var(--color-primary-dark)", fontFamily: "var(--font-display)" }}
+                        className="text-xs font-bold uppercase tracking-wider mb-1 text-slate-900"
+                        style={{ fontFamily: "var(--font-display)" }}
                       >
                         {item.title}
                       </h4>
-                      <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
+                      <p className="text-xs text-slate-500 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -238,7 +238,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Core Values */}
+      {/* Our Core Values — Unboxed */}
       <section className="section" style={{ background: "var(--color-bg-primary)" }}>
         <div className="container">
           <div className="section-heading">
@@ -246,7 +246,7 @@ export default function AboutPage() {
             <p>The principles that guide our engineering and client service</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             {values.map((value, i) => (
               <motion.div
                 key={i}
@@ -255,31 +255,20 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="flex flex-col items-center text-center p-6 bg-white rounded-2xl transition-all duration-300 group"
-                style={{
-                  border: "1px solid var(--color-border)",
-                  boxShadow: "var(--shadow-sm)",
-                }}
+                className="flex flex-col items-center text-center group"
               >
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                  style={{
-                    background: "var(--color-primary-light)",
-                    boxShadow: "0 4px 14px rgba(21, 101, 192, 0.15)",
-                  }}
+                  className="w-13 h-13 rounded-2xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center mb-4 flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                 >
-                  <value.icon size={26} style={{ color: "var(--color-primary)" }} />
+                  <value.icon size={24} />
                 </div>
                 <h3
-                  className="text-base sm:text-lg font-bold mb-2 transition-colors group-hover:text-[var(--color-primary)]"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    color: "var(--color-primary-dark)",
-                  }}
+                  className="text-base sm:text-lg font-bold mb-2 transition-colors group-hover:text-[var(--color-primary)] text-slate-900"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
                   {value.title}
                 </h3>
-                <p className="text-xs sm:text-sm leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-500 font-medium">
                   {value.description}
                 </p>
               </motion.div>
@@ -288,59 +277,57 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder & Management */}
+      {/* Founder & Management — Unboxed */}
       <section className="section" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-white relative overflow-hidden"
-            style={{
-              border: "1px solid var(--color-border)",
-              boxShadow: "var(--shadow-md)",
-            }}
+            className="py-6 sm:py-10 flex flex-col items-center text-center justify-center mx-auto"
           >
-            {/* Top Accent Bar */}
-            <div
-              className="h-2 w-full absolute top-0 left-0 right-0"
-              style={{ background: "linear-gradient(90deg, var(--color-primary), var(--color-accent))" }}
-            />
-
-            <div className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-4 shadow-lg bg-gradient-to-br from-[#0D47A1] to-[#0288D1] text-white">
+            {/* Avatar Icon Container — Centered */}
+            <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-5 bg-gradient-to-br from-[#0D47A1] to-[#0288D1] text-white shadow-md transition-transform hover:scale-105">
               <span className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>
                 GK
               </span>
             </div>
 
             <h3
-              className="text-xl sm:text-2xl font-bold mb-1"
+              className="text-xl sm:text-2xl font-bold mb-1 text-slate-900"
               style={{
                 fontFamily: "var(--font-display)",
-                color: "var(--color-primary-dark)",
               }}
             >
               Ganesh Khandale
             </h3>
-            <p className="text-sm font-bold mb-4" style={{ color: "var(--color-primary)" }}>
-              Founder & Managing Director
-            </p>
-            <p className="text-xs sm:text-sm leading-relaxed mb-6 max-w-xl mx-auto" style={{ color: "var(--color-text-secondary)" }}>
-              With over a decade of expertise in Medical Gas Pipeline Systems, Ganesh leads Ocean MGPS
+            
+            {/* Qualification & Role Pill */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-[var(--color-primary)]">
+                Biomedical Engineer
+              </span>
+              <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+                Founder & Managing Director
+              </span>
+            </div>
+
+            <p className="text-xs sm:text-sm leading-relaxed mb-6 max-w-xl mx-auto text-slate-500 font-medium">
+              As a certified Biomedical Engineer with over a decade of hands-on expertise in Medical Gas Pipeline Systems, Ganesh leads Ocean MGPS
               with a commitment to quality, safety compliance, and making reliable healthcare gas infrastructure accessible to every hospital across India.
             </p>
 
-            {/* Direct Contact Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-[var(--color-border-light)]">
+            {/* Direct Contact Links — Unboxed */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <a
                 href="tel:8421526195"
-                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl bg-[var(--color-primary-light)] text-[var(--color-primary)] hover:bg-blue-100 transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full bg-blue-50/80 text-[var(--color-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300"
               >
                 <Phone size={14} /> +91 8421526195 / 8007515182
               </a>
               <a
                 href="mailto:oceanmgps@gmail.com"
-                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl bg-[var(--color-primary-light)] text-[var(--color-primary)] hover:bg-blue-100 transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full bg-blue-50/80 text-[var(--color-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300"
               >
                 <Mail size={14} /> oceanmgps@gmail.com
               </a>

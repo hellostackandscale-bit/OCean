@@ -8,7 +8,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Wrench, ShoppingBag, Settings, Stethoscope, Building2, Headphones, Check, X, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Wrench, ShoppingBag, Settings, Stethoscope, Building2, Headphones, Check, X, CheckCircle2, ShieldCheck, Sparkles, Flame } from "lucide-react";
 
 const services = [
   {
@@ -31,19 +31,38 @@ const services = [
   {
     id: "equipment-sales",
     icon: ShoppingBag,
-    title: "Equipment Sales",
-    description: "Complete range of hospital gas supply equipment — manifolds, regulators, outlets, copper pipes, valves, and accessories.",
-    fullDescription: "High-grade stockist and supplier of certified hospital gas pipeline equipment. We supply high-precision medical gas outlets, BPC flow meters, vacuum regulators, copper fittings, and bed head panels.",
+    title: "Equipment Sales & Medical Devices",
+    description: "Complete range of hospital & ICU equipment — ECG machines, patient monitors, infusion & syringe pumps, ventilators, baby care warmers, and MGPS hardware.",
+    fullDescription: "High-grade stockist and supplier of certified hospital gas pipeline hardware, ICU devices, and diagnostic equipment. We supply ECG machines, multi-para patient monitors, volumetric infusion & syringe pumps, ICU ventilators, infant radiant warmers, BPC flow meters, vacuum regulators, and medical gas outlets.",
     features: [
+      "3-Channel & 12-Channel ECG Machines with Interpretation",
+      "Multi-Para Patient Monitors (5-Para / 7-Para ICU & OT)",
+      "Volumetric Infusion Pumps & High-Precision Syringe Pumps",
+      "Advanced ICU & Transport Ventilators",
+      "Infant Radiant Warmers, Baby Incubators & Phototherapy",
       "Manual & Automatic Gas Manifold Control Panels",
-      "Medical Gas Outlets (BS / DIN / AFNOR standards)",
-      "BPC Oxygen Flow Meters & Humidifier Bottles",
-      "Vacuum Regulators & Suction Jar Units",
-      "Seamless Copper Piping & Brass Fittings",
-      "Digital Area & Master Gas Alarm Panels"
+      "Medical Gas Outlets (BS / DIN / AFNOR) & BPC Flow Meters",
+      "Vacuum Regulators, Suction Jars & Bed Head Panels"
     ],
-    tags: ["Manifold Systems", "Copper Tubing", "Outlets"],
+    tags: ["ECG & Monitors", "Ventilators & Pumps", "Baby Care Warmers", "MGPS Hardware"],
     badge: "02",
+  },
+  {
+    id: "lpg-gas-piping",
+    icon: Flame,
+    title: "LPG Copper Gas Piping",
+    description: "Domestic home LPG copper pipeline systems & commercial kitchen gas manifold engineering for hotels, restaurants, and apartments.",
+    fullDescription: "Safe, centralized LPG copper gas pipeline installation for residences, villas, commercial kitchens, hotels, and apartments. We install leakproof heavy-wall copper pipes, auto changeover LPG manifolds, gas leak sensors, and automatic cutoff solenoid valves.",
+    features: [
+      "Home kitchen LPG copper pipeline installation",
+      "Hotel & restaurant commercial LPG manifold banks",
+      "Automatic gas leak detector & solenoid cutoff valve",
+      "First & second stage pressure regulator setup",
+      "Reticulated LPG system for housing societies with gas meters",
+      "PESO & IS 6044 safety compliant installation"
+    ],
+    tags: ["Home LPG Piping", "Hotel Manifolds", "Leak Cutoff"],
+    badge: "03",
   },
   {
     id: "modular-ot",
@@ -60,23 +79,25 @@ const services = [
       "NABH & ISO compliant surgical theater setup"
     ],
     tags: ["NABH Compliant", "Pendants", "Laminar Flow"],
-    badge: "03",
+    badge: "04",
   },
   {
     id: "repair-maintenance",
     icon: Stethoscope,
-    title: "Repair & Maintenance",
-    description: "Preventive maintenance, leak detection, and 24/7 emergency repair services for existing MGPS and hospital gas systems.",
-    fullDescription: "Round-the-clock emergency support and annual maintenance contracts (AMC) for hospital gas supply networks. We ensure 100% uptime for oxygen, vacuum, and medical air pipelines.",
+    title: "Repair & Maintenance Services",
+    description: "Preventive maintenance, calibration, 24/7 emergency repair & AMC support for MGPS pipelines, ICU monitors, ECG machines, ventilators & syringe pumps.",
+    fullDescription: "Round-the-clock emergency support, calibration, and annual maintenance contracts (AMC) for hospital gas supply networks and ICU medical devices. We service and repair ECG machines, patient monitors, infusion & syringe pumps, ICU ventilators, infant radiant warmers, manifold panels, and gas pipeline outlets.",
     features: [
-      "24/7 emergency repair & breakdown support",
-      "Ultrasonic gas leak detection & pipe repair",
-      "Manifold pressure calibration & cylinder testing",
-      "Component replacement & outlet servicing",
-      "Preventive quarterly maintenance visits",
-      "Comprehensive AMC & Non-AMC packages"
+      "24/7 Emergency repair & breakdown support for MGPS & ICU devices",
+      "Calibration & repair of ECG machines & multi-para patient monitors",
+      "Infusion & syringe pump servicing & volume flow calibration",
+      "ICU ventilator preventive maintenance & sensor replacement",
+      "Infant radiant warmer & baby incubator calibration",
+      "Ultrasonic gas leak detection, pipe repair & manifold calibration",
+      "Component replacement, gas outlet servicing & pressure testing",
+      "Comprehensive AMC & Non-AMC annual maintenance packages"
     ],
-    tags: ["24/7 Emergency", "Leak Testing", "AMC Coverage"],
+    tags: ["24/7 Emergency Repair", "ICU Device Servicing", "AMC & Calibration"],
     badge: "04",
   },
   {
