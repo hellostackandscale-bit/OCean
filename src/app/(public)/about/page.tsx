@@ -20,6 +20,7 @@ import {
   Wrench,
   CheckCircle2,
   Sparkles,
+  Stethoscope,
 } from "lucide-react";
 
 const values = [
@@ -139,60 +140,71 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story & Milestones Grid */}
+      {/* Our Story & Milestones Grid — Frameless & Spacious */}
       <section className="section" style={{ background: "var(--color-bg-secondary)" }}>
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Story (5 Columns) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            {/* Story & Leadership (6 Columns) */}
             <motion.div
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-5"
+              className="lg:col-span-6 space-y-6"
             >
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-md bg-blue-100/80 text-[var(--color-primary)] mb-3">
-                <Sparkles size={14} /> Our Background
+              <div>
+                <span className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-primary)] block mb-2">
+                  OUR JOURNEY & LEADERSHIP
+                </span>
+                <h2
+                  className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Engineered by <span className="text-gradient">Biomedical Experts</span>
+                </h2>
               </div>
-              <h2
-                className="text-2xl sm:text-3xl font-bold mb-5"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--color-primary-dark)",
-                }}
-              >
-                Our Journey & Engineering Mission
-              </h2>
-              <div className="space-y-4 text-sm sm:text-base leading-relaxed" style={{ color: "var(--color-text-secondary)" }}>
+
+              <div className="space-y-4 text-sm sm:text-base leading-relaxed text-slate-600 font-medium">
                 <p>
-                  Ocean MGPS Sales & Multi Services was founded with a clear mission — to provide
-                  hospitals and clinics across India with safe, certified, and uninterrupted Medical Gas Pipeline
-                  Systems. Based in Ch. Sambhaji Nagar, Maharashtra, we have grown into a trusted technical partner for medical infrastructure.
+                  Ocean MGPS Sales & Multi Services was founded in Ch. Sambhaji Nagar, Maharashtra, with a clear mission — to provide hospitals, ICUs, and healthcare facilities across India with certified, zero-downtime Medical Gas Pipeline Systems (MGPS).
                 </p>
                 <p>
-                  Under the experienced leadership of <strong style={{ color: "var(--color-text-primary)" }}>Ganesh Khandale</strong>,
-                  our specialized team brings over a decade of hands-on expertise in central gas manifold setups, copper piping networks, modular OTs, and alarm control panels.
+                  Founded under the vision of Managing Director <strong className="text-slate-900 font-bold">Ganesh Khandale</strong> and technical leadership of Lead Biomedical Engineer <strong className="text-slate-900 font-bold">Adesh Khandale</strong>, our specialized team brings over a decade of hands-on expertise in central gas manifolds, copper piping networks, ICU equipment, and modular OTs.
                 </p>
                 <p>
-                  From supplying a single copper fitting or BPC flow meter to executing full turnkey hospital gas pipeline installations, we uphold strict standards of safety and quality at every step.
+                  From designing central gas manifold banks and medical-grade copper pipeline networks to installing ICU ventilators, patient monitors, and modular OTs, our team ensures 100% compliance with IS 7484 and HTM 02-01 standards.
                 </p>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-[var(--color-border-light)] flex flex-wrap gap-3">
-                <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-primary)] bg-white px-3.5 py-2 rounded-xl border border-[var(--color-border-light)] shadow-xs">
-                  <CheckCircle2 size={16} /> IS 7484 Compliant
+              {/* Frameless Highlights Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-200/80">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">
+                    <Stethoscope size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Biomedical Engineers</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">Clinical safety & device calibration expertise</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-primary)] bg-white px-3.5 py-2 rounded-xl border border-[var(--color-border-light)] shadow-xs">
-                  <CheckCircle2 size={16} /> 24/7 Support Network
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">
+                    <Shield size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">IS 7484 & HTM 02-01</h4>
+                    <p className="text-xs text-slate-500 mt-0.5">Purity certification & leakhold testing</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Key Company Milestones — Unboxed Flat Layout */}
+            {/* Key Company Milestones (6 Columns) */}
             <motion.div
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-7 flex flex-col justify-start"
+              className="lg:col-span-6 flex flex-col justify-start"
             >
               <div className="flex items-center gap-3 pb-4 mb-6 border-b border-slate-200/80">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 text-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
@@ -277,62 +289,92 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder & Management — Unboxed */}
+      {/* Founder & Technical Leadership Section */}
       <section className="section" style={{ background: "var(--color-bg-secondary)" }}>
-        <div className="container max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="py-6 sm:py-10 flex flex-col items-center text-center justify-center mx-auto"
-          >
-            {/* Avatar Icon Container — Centered */}
-            <div className="w-20 h-20 rounded-2xl flex items-center justify-center mb-5 bg-gradient-to-br from-[#0D47A1] to-[#0288D1] text-white shadow-md transition-transform hover:scale-105">
-              <span className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>
-                GK
-              </span>
-            </div>
+        <div className="container max-w-5xl">
+          <div className="text-center mb-10">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-[var(--color-primary)] block mb-2">
+              EXECUTIVE & TECHNICAL LEADERSHIP
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+              Guided by Experience & Engineering Innovation
+            </h2>
+          </div>
 
-            <h3
-              className="text-xl sm:text-2xl font-bold mb-1 text-slate-900"
-              style={{
-                fontFamily: "var(--font-display)",
-              }}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {/* Ganesh Khandale — Managing Director */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4"
             >
-              Ganesh Khandale
-            </h3>
-            
-            {/* Qualification & Role Pill */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-[var(--color-primary)]">
-                Biomedical Engineer
-              </span>
-              <span className="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-600">
-                Founder & Managing Director
-              </span>
-            </div>
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="w-18 h-18 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#0D47A1] to-[#0288D1] text-white shadow-md">
+                  <span className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>
+                    GK
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+                    Ganesh Khandale
+                  </h3>
+                  <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-[var(--color-primary)] mt-1">
+                    Founder & Managing Director
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-500 font-medium pt-1">
+                  Provides strategic vision, operational execution, and client partnership management for turnkey hospital MGPS projects, commercial gas manifolds, and pan-India medical supply distribution.
+                </p>
+              </div>
 
-            <p className="text-xs sm:text-sm leading-relaxed mb-6 max-w-xl mx-auto text-slate-500 font-medium">
-              As a certified Biomedical Engineer with over a decade of hands-on expertise in Medical Gas Pipeline Systems, Ganesh leads Ocean MGPS
-              with a commitment to quality, safety compliance, and making reliable healthcare gas infrastructure accessible to every hospital across India.
-            </p>
+              <div className="pt-4 border-t border-slate-100 w-full flex items-center justify-center gap-3">
+                <a
+                  href="tel:8698648386"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-blue-600 hover:text-white transition-all"
+                >
+                  <Phone size={13} /> +91 8698648386
+                </a>
+              </div>
+            </motion.div>
 
-            {/* Direct Contact Links — Unboxed */}
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="tel:8421526195"
-                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full bg-blue-50/80 text-[var(--color-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300"
-              >
-                <Phone size={14} /> +91 8421526195 / 8007515182
-              </a>
-              <a
-                href="mailto:oceanmgps@gmail.com"
-                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full bg-blue-50/80 text-[var(--color-primary)] hover:bg-blue-600 hover:text-white transition-all duration-300"
-              >
-                <Mail size={14} /> oceanmgps@gmail.com
-              </a>
-            </div>
-          </motion.div>
+            {/* Aadesh Khandale — Biomedical Engineer */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between items-center text-center space-y-4"
+            >
+              <div className="flex flex-col items-center text-center space-y-3">
+                <div className="w-18 h-18 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#0288D1] to-[#00ATC4] bg-cyan-700 text-white shadow-md">
+                  <span className="text-2xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>
+                    AK
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900" style={{ fontFamily: "var(--font-display)" }}>
+                    Aadesh Khandale
+                  </h3>
+                  <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-cyan-50 text-cyan-700 mt-1">
+                    Lead Biomedical Engineer
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-500 font-medium pt-1">
+                  Certified Biomedical Engineer overseeing technical pipeline design, IS 7484 & HTM 02-01 safety compliance, ICU critical care equipment calibration, and testing commissioning.
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 w-full flex items-center justify-center gap-3">
+                <a
+                  href="tel:7775904214"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-blue-600 hover:text-white transition-all"
+                >
+                  <Phone size={13} /> +91 7775904214
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

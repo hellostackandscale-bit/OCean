@@ -28,6 +28,7 @@ import {
   Settings,
   Activity,
   ShieldAlert,
+  FlaskConical,
 } from "lucide-react";
 
 // LPG System Components Data
@@ -99,7 +100,7 @@ const lpgComponents = [
   },
 ];
 
-// Domestic vs Commercial Comparison
+// Domestic, Commercial, Reticulated & Chemistry Lab Applications
 const lpgApplications = [
   {
     icon: Home,
@@ -127,6 +128,20 @@ const lpgApplications = [
       "PESO & IS 6044 compliant safety valves, flame arrestors & emergency shutoffs",
       "Reduces LPG cylinder consumption costs through 100% gas exhaustion",
       "Dedicated 24/7 technical support & quarterly safety audits in Sambhaji Nagar",
+    ],
+  },
+  {
+    icon: FlaskConical,
+    title: "LPG Piping for Chemistry & Science Labs",
+    tagline: "Safe Gas Distribution for School, College & Research Laboratories",
+    description:
+      "Specialized copper LPG gas distribution networks for chemistry laboratories, educational institution science labs, and industrial testing centers. Features multi-station Bunsen burner taps, master instructor shutoffs, and gas leak alarms.",
+    benefits: [
+      "Central cylinder manifold stored outside lab rooms to eliminate indoor hazards",
+      "Workbench copper piping with individual fine-control needle valves for Bunsen burners",
+      "Master emergency gas shutoff valve at lab entrance for instant instructor control",
+      "Dual-stage pressure regulation providing steady, non-flickering blue heating flame",
+      "IS 6044 lab safety compliant with semiconductor gas leak detectors & audio alarms",
     ],
   },
   {

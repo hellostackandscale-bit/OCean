@@ -242,10 +242,10 @@ export default function FAQPage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
               <a
-                href="tel:8421526195"
+                href="tel:8698648386"
                 className="btn btn-outline btn-lg w-full sm:w-auto text-sm justify-center rounded-xl py-3 px-6"
               >
-                <Phone size={16} /> Call +91 8421526195
+                <Phone size={16} /> Call +91 8698648386
               </a>
               <Link href="/contact" className="btn btn-primary btn-lg w-full sm:w-auto text-sm justify-center rounded-xl py-3 px-6 font-bold shadow-xs">
                 Send Enquiry <ArrowRight size={16} />

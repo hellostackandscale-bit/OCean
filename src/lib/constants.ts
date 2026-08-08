@@ -63,9 +63,9 @@ export const DEFAULT_SETTINGS = {
   about:
     "We are a highly specialized stockist, supplier, and installer of Medical Gas Pipeline Systems and hospital equipment. Serving healthcare facilities across India with quality products and expert installation services.",
   address: "Mukund wadi, N-2, CIDCO, Ch. Sambhaji Nagar, Maharashtra, India",
-  phones: ["8699848386", "8007515182"],
+  phones: ["8698648386", "8007515182", "7775904214"],
   email: "oceanmgps@gmail.com",
-  whatsapp: "918699848386",
+  whatsapp: "917775904214",
   website: "www.oceanmgps.com",
   socialLinks: [],
   heroImages: [],
@@ -88,15 +88,15 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Which gases are supplied through MGPS?",
     answer:
-      "MGPS typically supplies Oxygen (O2), Nitrous Oxide (N2O), Medical Air, and Vacuum. Some systems also include Carbon Dioxide (CO2) and Nitrogen (N2) depending on the facility's requirements.",
+      "Medical oxygen (O2), Medical nitrous oxide (N2O), Medical compressed air (4 bar & 7 bar), Medical vacuum, and Carbon dioxide (CO2).",
   },
   {
-    question: "What areas do you serve?",
+    question: "Do you comply with safety standards?",
     answer:
-      "We serve hospitals and healthcare facilities across Maharashtra and pan-India. Our headquarters is in Ch. Sambhaji Nagar, and we have completed installations across multiple states.",
+      "Yes, all our pipeline systems, fittings, and manifolds strictly comply with Indian Standards (IS 7484 / IS 6044 / HTM 02-01) and NABH quality guidelines.",
   },
   {
-    question: "Do you provide installation services?",
+    question: "Do you undertake turnkey hospital MGPS projects?",
     answer:
       "Yes, we provide end-to-end MGPS installation services including planning, procurement, pipeline installation, testing, commissioning, and certification. Our experienced team ensures all installations meet IS standards.",
   },
@@ -108,7 +108,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How do I request a quotation?",
     answer:
-      "You can request a quotation through our website's enquiry form, by calling us at 8699848386 / 8007515182, emailing oceanmgps@gmail.com, or sending us a message on WhatsApp. We typically respond within 24 hours.",
+      "You can request a quotation through our website's enquiry form, by calling us at +91 8698648386 / 8007515182 / 7775904214, emailing oceanmgps@gmail.com, or sending us a message on WhatsApp (+91 7775904214). We typically respond within 24 hours.",
   },
   {
     question: "Do you provide maintenance and repair services?",

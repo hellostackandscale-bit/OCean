@@ -86,96 +86,91 @@ function ContactFormContent() {
     }
   };
 
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918421526195";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917775904214";
 
   return (
     <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start w-full">
       {/* Left Column: Contact Information — Clean Minimalist */}
       <div className="w-full lg:w-5/12 flex flex-col gap-6">
         <div>
-          <div className="pb-4 mb-6 border-b border-slate-200/80">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600 block mb-1">
-              Direct Connect
-            </span>
-            <h2
-              className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Contact Information
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Reach out to our engineering office in Ch. Sambhaji Nagar, Maharashtra
-            </p>
+          <span className="text-[11px] font-extrabold uppercase tracking-widest text-[var(--color-primary)] block mb-1">
+            DIRECT CONNECT
+          </span>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight" style={{ fontFamily: "var(--font-display)" }}>
+            Get in Touch with Our <span className="text-gradient">Engineers</span>
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-500 font-medium mt-2 leading-relaxed">
+            Have questions about turnkey hospital MGPS installation, commercial LPG copper piping, or medical equipment? Reach out directly.
+          </p>
+        </div>
+
+        {/* Contact Info Items */}
+        <div className="space-y-5 pt-2">
+          {/* Address */}
+          <div className="flex items-start gap-3.5">
+            <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+              <MapPin size={18} />
+            </div>
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                Headquarters Address
+              </span>
+              <p className="text-sm font-semibold text-slate-800 leading-snug">
+                Ocean MGPS Sales & Multi Services
+              </p>
+              <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                Ch. Sambhaji Nagar, Maharashtra 431005, India
+              </p>
+            </div>
           </div>
 
-          {/* Simple Unboxed Info List */}
-          <div className="space-y-5">
-            {/* Address */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
-                <MapPin size={18} />
-              </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
-                  Headquarters Address
-                </span>
-                <p className="text-sm font-semibold text-slate-800 leading-snug">
-                  Ocean MGPS Sales & Multi Services
-                </p>
-                <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
-                  Ch. Sambhaji Nagar, Maharashtra 431005, India
-                </p>
+          {/* Helplines */}
+          <div className="flex items-start gap-3.5">
+            <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+              <Phone size={18} />
+            </div>
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                Direct Helplines
+              </span>
+              <div className="flex flex-col gap-1 text-sm font-semibold text-slate-800">
+                <a href="tel:8698648386" className="hover:text-blue-600 transition-colors">+91 8698648386 (Ganesh Khandale — MD)</a>
+                <a href="tel:7775904214" className="hover:text-blue-600 transition-colors">+91 7775904214 (Aadesh Khandale — Biomedical Eng.)</a>
+                <a href="tel:8007515182" className="hover:text-blue-600 transition-colors">+91 8007515182</a>
               </div>
             </div>
+          </div>
 
-            {/* Helplines */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
-                <Phone size={18} />
-              </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
-                  Direct Helplines
-                </span>
-                <p className="text-sm font-semibold text-slate-800">
-                  <a href="tel:8421526195" className="hover:text-blue-600 transition-colors">+91 8421526195</a>
-                  {" / "}
-                  <a href="tel:8007515182" className="hover:text-blue-600 transition-colors">+91 8007515182</a>
-                </p>
-              </div>
+          {/* Email */}
+          <div className="flex items-start gap-3.5">
+            <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+              <Mail size={18} />
             </div>
-
-            {/* Email */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
-                <Mail size={18} />
-              </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
-                  Official Email
-                </span>
-                <a
-                  href="mailto:oceanmgps@gmail.com"
-                  className="text-sm font-semibold text-slate-800 hover:text-blue-600 transition-colors"
-                >
-                  oceanmgps@gmail.com
-                </a>
-              </div>
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                Official Email
+              </span>
+              <a
+                href="mailto:oceanmgps@gmail.com"
+                className="text-sm font-semibold text-slate-800 hover:text-blue-600 transition-colors"
+              >
+                oceanmgps@gmail.com
+              </a>
             </div>
+          </div>
 
-            {/* Business Hours */}
-            <div className="flex items-start gap-3.5">
-              <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
-                <Clock size={18} />
-              </div>
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
-                  Business Hours
-                </span>
-                <p className="text-sm font-semibold text-slate-800">
-                  {DEFAULT_SETTINGS.businessHours}
-                </p>
-              </div>
+          {/* Business Hours */}
+          <div className="flex items-start gap-3.5">
+            <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5">
+              <Clock size={18} />
+            </div>
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                Business Hours
+              </span>
+              <p className="text-sm font-semibold text-slate-800">
+                {DEFAULT_SETTINGS.businessHours}
+              </p>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, PhoneCall } from "lucide-react";
 
 export default function CTABanner() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918421526195";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917775904214";
   const message = encodeURIComponent(
     "Hello Ocean MGPS! I'm interested in setting up a Medical Gas Pipeline System for my hospital. Please share a quotation."
   );

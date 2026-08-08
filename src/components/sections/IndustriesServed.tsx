@@ -63,6 +63,13 @@ const industries = [
     badge: "24/7 Redundancy",
     tags: ["Dual Manifolds", "Area Gas Alarms", "Continuous Vacuum"],
   },
+  {
+    icon: FlaskConical,
+    name: "Chemistry & Science Laboratories",
+    description: "Multi-station LPG gas pipeline networks for educational school/college chemistry labs and industrial research testing centers.",
+    badge: "Lab Gas Safety",
+    tags: ["Bunsen Burner Taps", "Master Cutoff Valve", "Gas Leak Sensor"],
+  },
 ];
 
 export default function IndustriesServed() {

@@ -10,7 +10,7 @@ import { MessageCircle, X } from "lucide-react";
 
 export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918699848386";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917775904214";
   const message = encodeURIComponent(
     "Hello Ocean MGPS! I'm interested in your Medical Gas Pipeline System services. Please share more details."
   );

@@ -112,7 +112,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
   if (!product) return null;
 
   const { description, specs, compliance } = getProductDetails(product);
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "918421526195";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917775904214";
   const whatsappMessage = encodeURIComponent(
     `Hello Ocean MGPS! I'd like to enquire about the product: ${product.name} (${product.category}). Please share pricing and availability.`
   );
